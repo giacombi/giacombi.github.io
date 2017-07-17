@@ -25,7 +25,7 @@ weight = 1
 [[education.courses]]
   course = "Specialist in Cardiac Surgery"
   institution = "Massachusetts Institute of Technology"
-  year = 2004-2009
+  year = 2009
 
 [[education.courses]]
   course = "Fellow of Artificial Organs Lab"
