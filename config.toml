@@ -158,6 +158,11 @@ defaultContentLanguageInSubdir = false
   name = "Publications"
   url = "#publications_selected"
   weight = 2
+  
+ [[menu.main]]
+  name = "Talks"
+  url = "#talk"
+  weight = 2
 
 [[menu.main]]
   name = "Posts"

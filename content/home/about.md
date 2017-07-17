@@ -13,14 +13,18 @@ weight = 1
 [interests]
   interests = [
     "Minimally Invasive Cardiac Surgery",
-    "Data Science"
+    "Mechanical Assit Devices",
+    "ECMO",
+    "Data Science",
+    "R",
+    "Python"
   ]
 
 # List your qualifications (such as academic degrees).
 [[education.courses]]
   course = "PhD in Innovative Strategies in Biomedical Research"
   institution = "Scuola Superiore Sant'Anna - Pisa - ITALY"
-  year = 2012
+  year = 2013
 
 [[education.courses]]
   course = "Specialist in Cardiac Surgery"
@@ -30,6 +34,11 @@ weight = 1
 [[education.courses]]
   course = "Fellow of Artificial Organs Lab"
   institution = "University of Maryland - Baltimore - Maryland - USA"
+  year = 2009
+ 
+ [[education.courses]]
+  course = "Medical Degree"
+  institution = "University of Florence - Florence - ITALY"
   year = 2009
  
 +++
