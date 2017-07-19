@@ -20,6 +20,24 @@
     </item>
     
     <item>
+      <title>Euroscore Perfomance in MICS: Discrimination Ability and External Calibration</title>
+      <link>https://giacombi.github.io/publication/euroscore_discr_calibr/</link>
+      <pubDate>Fri, 02 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://giacombi.github.io/publication/euroscore_discr_calibr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Surgical resection of colorectal carcinomas metastatic to the heart</title>
+      <link>https://giacombi.github.io/publication/colorectal_rev/</link>
+      <pubDate>Wed, 30 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://giacombi.github.io/publication/colorectal_rev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Deep Learning</title>
       <link>https://giacombi.github.io/project/deep-learning/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
@@ -802,16 +820,6 @@ Here&#39;s some important information...
     </item>
     
     <item>
-      <title>A Person Re-Identification System For Mobile Devices</title>
-      <link>https://giacombi.github.io/publication/person-re-identification/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://giacombi.github.io/publication/person-re-identification/</guid>
-      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Hello R Markdown</title>
       <link>https://giacombi.github.io/post/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
@@ -904,13 +912,12 @@ With Jekyll, something that looked like&lt;/p&gt;
     </item>
     
     <item>
-      <title>Mobile visual clothing search</title>
-      <link>https://giacombi.github.io/publication/clothing-search/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      <title>Minimally invasive mitral valve surgery in high-risk patients: operating outside the boxplot</title>
+      <link>https://giacombi.github.io/publication/euroscore_boxplot/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://giacombi.github.io/publication/clothing-search/</guid>
-      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
+      <guid>https://giacombi.github.io/publication/euroscore_boxplot/</guid>
+      <description></description>
     </item>
     
   </channel>

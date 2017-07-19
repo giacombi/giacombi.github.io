@@ -1,0 +1,27 @@
+abstract = "Colorectal carcinomas metastatic to the heart are rare. We present a case of colonic carcinoma metastatic to the right atrium and discuss the management and prognosis of these rare lesion ."
+authors = ["Bianchi G", "Cerillo AG", "Murzi M", "Solinas M"]
+date = "2016-1-031"
+image_preview = ""
+math = true
+publication_types = ["2"]
+publication = "Journal of Cardiac Surgery"
+publication_short = "#"
+selected = false
+title = "Surgical resection of colorectal carcinomas metastatic to the heart."
+url_code = "#"
+url_dataset = "#"
+url_pdf = "#"
+url_project = "#"
+url_slides = "#"
+url_video = "#"
+
+[[url_custom]]
+name = "Custom Link"
+url = "doi: 10.1111/jocs.12841"
+
+# Optional featured image (relative to `static/img/` folder).
+[header]
+image = "colorectal_k_review.png"
+caption = "Minimally invasive surgical setup (A) and appearance of the metastatic tumor (B)"
+
++++
