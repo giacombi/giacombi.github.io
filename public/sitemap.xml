@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>https://giacombi.github.io/project/digoxin/</loc>
+      <lastmod>2017-07-21T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://giacombi.github.io/talk/example-talk/</loc>
       <lastmod>2017-06-03T00:00:00+00:00</lastmod>
     </url>
@@ -186,6 +195,16 @@
     
     <url>
     
+      <loc>https://giacombi.github.io/tags/biostatistics/</loc>
+      <lastmod>2017-07-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://giacombi.github.io/categories/</loc>
       <priority>0</priority>
     </url>
@@ -245,6 +264,16 @@
     
     <url>
     
+      <loc>https://giacombi.github.io/tags/medicine/</loc>
+      <lastmod>2017-07-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://giacombi.github.io/publication/euroscore_boxplot/</loc>
     </url>
     
@@ -264,7 +293,7 @@
     <url>
     
       <loc>https://giacombi.github.io/project/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+      <lastmod>2017-07-21T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -313,8 +342,28 @@
     
     <url>
     
+      <loc>https://giacombi.github.io/tags/reproducible-research/</loc>
+      <lastmod>2017-07-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://giacombi.github.io/tags/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://giacombi.github.io/tags/teaching/</loc>
+      <lastmod>2017-07-21T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

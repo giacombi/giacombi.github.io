@@ -11,6 +11,15 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Reproducible Research - Example from NEJM paper</title>
+      <link>https://giacombi.github.io/project/digoxin/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://giacombi.github.io/project/digoxin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>I Nuovi VAD</title>
       <link>https://giacombi.github.io/talk/example-talk/</link>
       <pubDate>Sat, 03 Jun 2017 00:00:00 +0000</pubDate>
@@ -935,15 +944,6 @@ With Jekyll, something that looked like&lt;/p&gt;
       <pubDate>Fri, 01 Nov 2013 00:00:00 +0000</pubDate>
       
       <guid>https://giacombi.github.io/publication/tric_augment/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Giant solitary fibrous tumor of the epicardium causing reversible heart failure</title>
-      <link>https://giacombi.github.io/publication/giant_sol_tum/</link>
-      <pubDate>Thu, 01 Aug 2013 00:00:00 +0000</pubDate>
-      
-      <guid>https://giacombi.github.io/publication/giant_sol_tum/</guid>
       <description></description>
     </item>
     
