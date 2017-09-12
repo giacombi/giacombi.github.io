@@ -183,17 +183,34 @@
   
   <div>
     
-    <h2><a href="https://giacombi.github.io/post/getting-started/">Getting started with the Academic framework for Hugo</a></h2>
+    <h2><a href="https://giacombi.github.io/post/ami_mice/">Acute Myocardial Infarction in a pre-clinical model: Insights from an Open Dataset</a></h2>
     
 
 <div class="article-metadata">
 
   <span class="article-date">
-    <time datetime="2016-04-20 12:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Wed, Apr 20, 2016
+    <time datetime="2017-08-08 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Tue, Aug 8, 2017
     </time>
   </span>
 
+  
+  
+  
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/r">R</a
+    >, 
+    
+    <a href="/categories/data-analysis">Data Analysis</a
+    >, 
+    
+    <a href="/categories/cardiology">Cardiology</a
+    >
+    
+  </span>
+  
   
 
   
@@ -202,10 +219,16 @@
   <span class="article-tags">
     <i class="fa fa-tags"></i>
     
-    <a href="/tags/academic">academic</a
+    <a href="/tags/data-analysis">Data Analysis</a
     >, 
     
-    <a href="/tags/hugo">hugo</a
+    <a href="/tags/tidy-data">Tidy Data</a
+    >, 
+    
+    <a href="/tags/data-munging">Data Munging</a
+    >, 
+    
+    <a href="/tags/r-notebook">R Notebook</a
     >
     
   </span>
@@ -218,122 +241,7 @@
 
     <div class="article-style"><p>
       
-      Create a beautifully simple personal or academic website in under 10 minutes.
-      
-    </p></div>
-  </div>
-  
-  <div>
-    
-    <h2><a href="https://giacombi.github.io/post/widgets/">Customizing the homepage with widgets</a></h2>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="2016-04-20 11:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Wed, Apr 20, 2016
-    </time>
-  </span>
-
-  
-
-  
-  
-  
-  <span class="article-tags">
-    <i class="fa fa-tags"></i>
-    
-    <a href="/tags/academic">academic</a
-    >, 
-    
-    <a href="/tags/hugo">hugo</a
-    >
-    
-  </span>
-  
-  
-
-  
-
-</div>
-
-    <div class="article-style"><p>
-      
-      Enable/disable and configure widgets to customize your homepage.
-      
-    </p></div>
-  </div>
-  
-  <div>
-    
-    <h2><a href="https://giacombi.github.io/post/managing-content/">Managing content</a></h2>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="2016-04-20 11:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Wed, Apr 20, 2016
-    </time>
-  </span>
-
-  
-
-  
-  
-  
-  <span class="article-tags">
-    <i class="fa fa-tags"></i>
-    
-    <a href="/tags/academic">academic</a
-    >, 
-    
-    <a href="/tags/hugo">hugo</a
-    >
-    
-  </span>
-  
-  
-
-  
-
-</div>
-
-    <div class="article-style"><p>
-      
-      This is a brief guide to managing content with the Academic framework. Content can include publications, projects, talks, and news/blog articles. After you have read this guide about creating and managing content, you may also be interested to learn about <a href="https://giacombi.github.io/post/writing-markdown-latex/" target="_blank">writing content with Markdown, LaTeX, and Shortcodes</a>.
-      
-    </p></div>
-  </div>
-  
-  <div>
-    
-    <h2><a href="https://giacombi.github.io/post/writing-markdown-latex/">Writing content with Markdown, LaTeX, and Shortcodes</a></h2>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="2016-04-20 10:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Wed, Apr 20, 2016
-    </time>
-  </span>
-
-  
-
-  
-  
-  
-  
-
-  
-
-</div>
-
-    <div class="article-style"><p>
-      
-      Content can be written using <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown</a>, <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics" target="_blank">LaTeX math</a>, and <a href="http://gohugo.io/extras/shortcodes/" target="_blank">Hugo Shortcodes</a>. Additionally, HTML may be used for advanced formatting. This article gives an overview of the most common formatting options.
+      Introduction Yesterday I came into the peculiar Biomedical Data Journal that dedicated its last issue to Heart Failure and Stress response. The structure of the journal consists in an editorial and some data papers. Those relevant to my attention were two echocardiographic datasets, assessing the cardiac function pre- and post-myocardial infarction in mice (the first) and rats (the second). I’ll go through the first dataset and apply the principles of Reproducibility and Data Analysis Workflow to download, explore, munge, rearrange and analize the data within; possibly also draw some meaningful conclusions from it.
       
     </p></div>
   </div>
@@ -392,73 +300,6 @@
       R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank">http://rmarkdown.rstudio.com</a>.
 You can embed an R code chunk like this:
 summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.
-      
-    </p></div>
-  </div>
-  
-  <div>
-    
-    <h2><a href="https://giacombi.github.io/post/migrate-from-jekyll/">Migrate from Jekyll to Hugo</a></h2>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="2014-03-10 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Mon, Mar 10, 2014
-    </time>
-  </span>
-
-  
-
-  
-  
-  
-  <span class="article-tags">
-    <i class="fa fa-tags"></i>
-    
-    <a href="/tags/jekyll">jekyll</a
-    >
-    
-  </span>
-  
-  
-
-  
-
-</div>
-
-    <div class="article-style"><p>
-      
-      Learn how to migrate an existing website from Jekyll to Hugo.
-      
-    </p></div>
-  </div>
-  
-  <div>
-    
-    <h2><a href="https://giacombi.github.io/post/2017-08-08-ami_mice/"></a></h2>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Mon, Jan 1, 0001
-    </time>
-  </span>
-
-  
-
-  
-
-  
-
-</div>
-
-    <div class="article-style"><p>
-      
-      Acute Myocardial Infarction in a pre-clinical model: Insights from an Open Dataset         code{white-space: pre;} pre:not([class]) { background-color: white; }  if (window.hljs &amp;&amp; document.readyState &amp;&amp; document.readyState === &ldquo;complete&rdquo;) { window.setTimeout(function() { hljs.initHighlighting(); }, 0); }  h1 { font-size: 34px; } h1.title { font-size: 38px; } h2 { font-size: 30px; } h3 { font-size: 24px; } h4 { font-size: 18px; } h5 { font-size: 16px; } h6 { font-size: 12px; } .
       
     </p></div>
   </div>
