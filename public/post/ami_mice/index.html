@@ -46,13 +46,13 @@
     
   
 
-  <link rel="alternate" href="https://giacombi.github.io/index.xml" type="application/rss+xml" title="Data Doctor Blog">
-  <link rel="feed" href="https://giacombi.github.io/index.xml" type="application/rss+xml" title="Data Doctor Blog">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Data Doctor Blog">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Data Doctor Blog">
 
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://giacombi.github.io/post/ami_mice/">
+  <link rel="canonical" href="/post/ami_mice/">
 
   
 
@@ -239,35 +239,35 @@
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fgiacombi.github.io%2fpost%2fami_mice%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fami_mice%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Acute%20Myocardial%20Infarction%20in%20a%20pre-clinical%20model%3a%20Insights%20from%20an%20Open%20Dataset&amp;url=https%3a%2f%2fgiacombi.github.io%2fpost%2fami_mice%2f"
+         href="https://twitter.com/intent/tweet?text=Acute%20Myocardial%20Infarction%20in%20a%20pre-clinical%20model%3a%20Insights%20from%20an%20Open%20Dataset&amp;url=%2fpost%2fami_mice%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fgiacombi.github.io%2fpost%2fami_mice%2f&amp;title=Acute%20Myocardial%20Infarction%20in%20a%20pre-clinical%20model%3a%20Insights%20from%20an%20Open%20Dataset"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fami_mice%2f&amp;title=Acute%20Myocardial%20Infarction%20in%20a%20pre-clinical%20model%3a%20Insights%20from%20an%20Open%20Dataset"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fgiacombi.github.io%2fpost%2fami_mice%2f&amp;title=Acute%20Myocardial%20Infarction%20in%20a%20pre-clinical%20model%3a%20Insights%20from%20an%20Open%20Dataset"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fami_mice%2f&amp;title=Acute%20Myocardial%20Infarction%20in%20a%20pre-clinical%20model%3a%20Insights%20from%20an%20Open%20Dataset"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Acute%20Myocardial%20Infarction%20in%20a%20pre-clinical%20model%3a%20Insights%20from%20an%20Open%20Dataset&amp;body=https%3a%2f%2fgiacombi.github.io%2fpost%2fami_mice%2f">
+         href="mailto:?subject=Acute%20Myocardial%20Infarction%20in%20a%20pre-clinical%20model%3a%20Insights%20from%20an%20Open%20Dataset&amp;body=%2fpost%2fami_mice%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -280,55 +280,83 @@
 </div>
 
     <div class="article-style" itemprop="articleBody">
-      <div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>Yesterday I came into the peculiar <a href="http://biomed-data.eu">Biomedical Data Journal</a> that dedicated its last issue to Heart Failure and Stress response. The structure of the journal consists in an editorial and some data papers. Those relevant to my attention were two echocardiographic datasets, assessing the cardiac function pre- and post-myocardial infarction in mice (the first) and rats (the second). I’ll go through the first dataset and apply the principles of Reproducibility and Data Analysis Workflow to download, explore, munge, rearrange and analize the data within; possibly also draw some meaningful conclusions from it.</p>
-</div>
-<div id="data-analysis-tools" class="section level1">
-<h1>Data Analysis tools</h1>
-<p>Many approaches are possible, using basic R or more advanced, efficient and structured tools such as libraries in the <a href="https://cran.r-project.org/web/packages/tidyverse/index.html">Tidyverse</a> library developed by <a href="https://en.wikipedia.org/wiki/Hadley_Wickham">Hadley Wickham</a>, well presented and documented in its dedicated <a href="http://www.tidyverse.org">site</a>. Also, another famous and handy package for computation comes from the mind of the statistician <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/FrankHarrell">Frank Harrel</a>, chair of Biostatistics at Vanderbilt University (Nashville, Tennessee USA); it is named after him in some way, being <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/Hmisc">Hmisc</a> acronym of “Harrell’s miscellanea”.</p>
-</div>
-<div id="load-libraries" class="section level1">
-<h1>Load Libraries</h1>
-<p>First steps are load the libraries that will be used at the beginning of the script, in this case of the notebook. I’ll load the useful bunch of packages contained in the Tidyverse along with Hmisc.</p>
-<pre class="r"><code>library(tidyverse)
+      <p>#Introduction
+Yesterday I came into the peculiar <a href="http://biomed-data.eu" target="_blank">Biomedical Data Journal</a> that dedicated its last issue to Heart Failure and Stress response. The structure of the journal consists in an editorial and some data papers. Those relevant to my attention were two echocardiographic datasets, assessing the cardiac function pre- and post-myocardial infarction in mice (the first) and rats (the second).
+I&rsquo;ll go through the first dataset and apply the principles of Reproducibility and Data Analysis Workflow to download, explore, munge, rearrange and analize the data within; possibly also draw some meaningful conclusions from it.</p>
+
+<p>#Data Analysis tools
+Many approaches are possible, using basic R or more advanced, efficient and structured tools such as libraries in the <a href="https://cran.r-project.org/web/packages/tidyverse/index.html" target="_blank">Tidyverse</a> library developed by <a href="https://en.wikipedia.org/wiki/Hadley_Wickham" target="_blank">Hadley Wickham</a>, well presented and documented in its dedicated <a href="http://www.tidyverse.org" target="_blank">site</a>. Also, another famous and handy package for computation comes from the mind of the statistician <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/FrankHarrell" target="_blank">Frank Harrel</a>, chair of Biostatistics at Vanderbilt University (Nashville, Tennessee USA); it is named after him in some way, being <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/Hmisc" target="_blank">Hmisc</a> acronym of &ldquo;Harrell&rsquo;s miscellanea&rdquo;.</p>
+
+<p>#Load Libraries
+First steps are load the libraries that will be used at the beginning of the script, in this case of the notebook. I&rsquo;ll load the useful bunch of packages contained in the Tidyverse along with Hmisc.</p>
+
+<pre><code class="language-r">library(tidyverse)
 library(Hmisc)
 library(ggthemes)
-library(hrbrthemes)</code></pre>
-</div>
-<div id="locate-store-and-read-the-files" class="section level1">
-<h1>Locate, store and read the files</h1>
-<p>The first dataset is located at this <a href="http://biomed-data.eu/article/dataset-echocardiographic-assessment-cardiac-function-mice-after-myocardial-infarction">page</a>. To automatically store the data it’s necessary the following script:</p>
-<pre class="bash"><code>mkdir data
-pwd</code></pre>
+library(hrbrthemes)
+</code></pre>
+
+<p>#Locate, store and read the files
+The first dataset is located at this <a href="http://biomed-data.eu/article/dataset-echocardiographic-assessment-cardiac-function-mice-after-myocardial-infarction" target="_blank">page</a>. To automatically store the data it&rsquo;s necessary the following script:</p>
+
+<pre><code class="language-bash">mkdir data
+pwd
+</code></pre>
+
 <pre><code>## mkdir: data: File exists
-## /Users/gbianchi/giacombi.github.io/content/post</code></pre>
-<p>In this Bash script a directory is created with <code>mkdir</code> and then the path is shown with <code>pwd</code>, that stands for ‘print working directory’. Now let’s download the actual file into the created directory:</p>
-<pre class="r"><code>if(!file.exists(&quot;01301_Mice_Myocardial_Infarction.xlsx&quot;)){
+## /Users/gbianchi/giacombi.github.io/content/post
+</code></pre>
+
+<p>In this Bash script a directory is created with <code>mkdir</code> and then the path is shown with <code>pwd</code>, that stands for &lsquo;print working directory&rsquo;.
+Now let&rsquo;s download the actual file into the created directory:</p>
+
+<pre><code class="language-r">if(!file.exists(&quot;01301_Mice_Myocardial_Infarction.xlsx&quot;)){
     url &lt;- &quot;http://biomed-data.eu/system/files/01301_Mice_Myocardial_Infarction_0.xlsx?download=1&quot;
     download.file(url, destfile = &quot;/Users/gbianchi/giacombi.github.io/content/post/data/01301_Mice_Myocardial_Infarction.xlsx&quot;)
-}</code></pre>
+}
+</code></pre>
+
 <p>This little chunck contains commands that first check for file existence using an <code>if()</code> statement; inside it first the non-existence of the destination file is assessed using <code>!file.exists()</code> and if the condition is evaluated internally as <code>TRUE</code>, it proceedes using the provided <code>url</code> to <code>download.file()</code> that contains the destination and name of the file.</p>
+
 <p>Now that we have the file, it is time to read it into a data structure that is useful for our purpose of analysis. Again verify our working directory, go to /data folder and list the files within.</p>
-<pre class="bash"><code>pwd
+
+<pre><code class="language-bash">pwd
 cd data
 pwd
-ls </code></pre>
+ls 
+</code></pre>
+
 <pre><code>## /Users/gbianchi/giacombi.github.io/content/post
 ## /Users/gbianchi/giacombi.github.io/content/post/data
 ##   01301_Mice_Myocardial_Infarction.xlsx
-## 01301_Mice_Myocardial_Infarction.xlsx</code></pre>
-<p>Our file has the extension <code>.xlsx</code> which denotes a Microsoft Excel file. We need a library to deal with it. I’ll go for <code>XLConnect</code> that has many interesting features.</p>
-<pre class="r"><code>library(XLConnect)
-wb = loadWorkbook(&quot;data/01301_Mice_Myocardial_Infarction.xlsx&quot;)</code></pre>
-<p>After established a connection with the workbook, it’s time to explore the sheets and get the one of our interest.</p>
-<pre class="r"><code>wb_sheets &lt;- XLConnect::getSheets(wb)
-wb_sheets</code></pre>
-<pre><code>## [1] &quot;Data Paper&quot;      &quot;Dataset Mice MI&quot;</code></pre>
+## 01301_Mice_Myocardial_Infarction.xlsx
+</code></pre>
+
+<p>Our file has the extension <code>.xlsx</code> which denotes a Microsoft Excel file. We need a library to deal with it. I&rsquo;ll go for <code>XLConnect</code> that has many interesting features.</p>
+
+<pre><code class="language-r">library(XLConnect)
+wb = loadWorkbook(&quot;data/01301_Mice_Myocardial_Infarction.xlsx&quot;)
+</code></pre>
+
+<p>After established a connection with the workbook, it&rsquo;s time to explore the sheets and get the one of our interest.</p>
+
+<pre><code class="language-r">wb_sheets &lt;- XLConnect::getSheets(wb)
+wb_sheets
+</code></pre>
+
+<pre><code>## [1] &quot;Data Paper&quot;      &quot;Dataset Mice MI&quot;
+</code></pre>
+
 <p>Then, we can read the second one into a dataframe as follows:</p>
-<pre class="r"><code>df &lt;- readWorksheet(wb, sheet = wb_sheets[2], header = TRUE)</code></pre>
-<p>The <code>dplyr</code> package provides an useful tool to look at the structure of the dataframe: <code>glimpse()</code>. The output is similar to <code>str()</code>, but more ‘structured’ and ’informative.</p>
-<pre class="r"><code>glimpse(df)</code></pre>
+
+<pre><code class="language-r">df &lt;- readWorksheet(wb, sheet = wb_sheets[2], header = TRUE)
+</code></pre>
+
+<p>The <code>dplyr</code> package provides an useful tool to look at the structure of the dataframe: <code>glimpse()</code>. The output is similar to <code>str()</code>, but more &lsquo;structured&rsquo; and &lsquo;informative.</p>
+
+<pre><code class="language-r">glimpse(df)
+</code></pre>
+
 <pre><code>## Observations: 31
 ## Variables: 20
 ## $ Subject..ID.                            &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8...
@@ -350,40 +378,51 @@ wb_sheets</code></pre>
 ## $ Scar.weight..gr.                        &lt;dbl&gt; 0.000, 0.000, 0.000, 0...
 ## $ Scar.area..mm2.                         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ Wet.lung.weight...gr.                   &lt;dbl&gt; 0.195, 0.115, 0.216, 0...
-## $ Right.ventricular.weight..gr.           &lt;dbl&gt; 0.0260, 0.0100, 0.0240...</code></pre>
-</div>
-<div id="data-manipulation" class="section level1">
-<h1>Data Manipulation</h1>
-<p>The dataset contains 31 observations and 20 variables; looking at the names of the variables, they doesn’t fit the general style rules. For more details about it, I suggest to look at the <a href="http://adv-r.had.co.nz/Style.html">style guide</a> in Advanced R by Hadley Wickham.</p>
-<p>For our purpose, let’s change the names with more tidy and immediate names. I’ll use the <code>dplyr</code> command <code>rename()</code> for it. Here we can use different approaches:</p>
-<ol style="list-style-type: decimal">
+## $ Right.ventricular.weight..gr.           &lt;dbl&gt; 0.0260, 0.0100, 0.0240...
+</code></pre>
+
+<p>#Data Manipulation</p>
+
+<p>The dataset contains 31 observations and 20 variables; looking at the names of the variables, they doesn&rsquo;t fit the general style rules. For more details about it, I suggest to look at the <a href="http://adv-r.had.co.nz/Style.html" target="_blank">style guide</a> in Advanced R by Hadley Wickham.</p>
+
+<p>For our purpose, let&rsquo;s change the names with more tidy and immediate names. I&rsquo;ll use the <code>dplyr</code> command <code>rename()</code> for it.
+Here we can use different approaches:</p>
+
+<ol>
 <li>completely rename, manually, all the variables into new ones, defined by the user (easy)</li>
 <li>use regular expression and string manipulation to obtain meaningful names (way more complex)</li>
 </ol>
-<p>Let’s start with the first way:</p>
-<div id="manual-renaming" class="section level2">
-<h2>Manual renaming</h2>
-<pre class="r"><code>mice_MI &lt;- df %&gt;% rename(ID = Subject..ID., 
-                Duration = Duration.of.Intervention..weeks.,
-                BodyWeight_start = Body.weight..gr..at.the.time.of.surgery,
-                BodyWeight_end = Body.weight.at.sacrifice..gr.,
-                LVEDD = LV.end.diastolic.diameter..cm.,
-                LVESD = LV.end.systolic.diameter..cm.,
-                LVPWT = LV.posterior.wall.Thickness..cm.,
-                LV_long_axis = long.axis.diameter.of.LV..cm.,
-                LVEF = LV.Ejection.Fraction..,
-                Sys_Vel = Systolic.velocity..cm.s.,
-                LVEDV = LV.End.Diastolic.Volume..ml.,
-                LVESV = LV.End.Systolic.Volume..ml.,
-                WT_index = Wall.Tension.Index..ratio.,
-                HR = Heart.rate..beats.per.min.,
-                LV_weight = Left.ventricular.weight..gr.,
-                Scar_weight = Scar.weight..gr.,
-                Scar_area = Scar.area..mm2.,
-                wet_lung_weight = Wet.lung.weight...gr.,
-                RV_weight = Right.ventricular.weight..gr.)</code></pre>
+
+<p>Let&rsquo;s start with the first way:</p>
+
+<p>##Manual renaming</p>
+
+<pre><code class="language-r">mice_MI &lt;- df %&gt;% rename(ID = Subject..ID., 
+				Duration = Duration.of.Intervention..weeks.,
+				BodyWeight_start = Body.weight..gr..at.the.time.of.surgery,
+				BodyWeight_end = Body.weight.at.sacrifice..gr.,
+				LVEDD = LV.end.diastolic.diameter..cm.,
+				LVESD = LV.end.systolic.diameter..cm.,
+				LVPWT = LV.posterior.wall.Thickness..cm.,
+				LV_long_axis = long.axis.diameter.of.LV..cm.,
+				LVEF = LV.Ejection.Fraction..,
+				Sys_Vel = Systolic.velocity..cm.s.,
+				LVEDV = LV.End.Diastolic.Volume..ml.,
+				LVESV = LV.End.Systolic.Volume..ml.,
+				WT_index = Wall.Tension.Index..ratio.,
+				HR = Heart.rate..beats.per.min.,
+				LV_weight = Left.ventricular.weight..gr.,
+				Scar_weight = Scar.weight..gr.,
+				Scar_area = Scar.area..mm2.,
+				wet_lung_weight = Wet.lung.weight...gr.,
+				RV_weight = Right.ventricular.weight..gr.)
+</code></pre>
+
 <p>Now look at the new dataset:</p>
-<pre class="r"><code>glimpse(mice_MI)</code></pre>
+
+<pre><code class="language-r">glimpse(mice_MI)
+</code></pre>
+
 <pre><code>## Observations: 31
 ## Variables: 20
 ## $ ID               &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
@@ -405,11 +444,12 @@ wb_sheets</code></pre>
 ## $ Scar_weight      &lt;dbl&gt; 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.0...
 ## $ Scar_area        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
 ## $ wet_lung_weight  &lt;dbl&gt; 0.195, 0.115, 0.216, 0.150, 0.130, 0.153, 0.1...
-## $ RV_weight        &lt;dbl&gt; 0.0260, 0.0100, 0.0240, 0.0260, 0.0200, 0.025...</code></pre>
-</div>
-<div id="retrieving-units-from-the-names" class="section level2">
-<h2>Retrieving units from the names</h2>
-<pre class="r"><code>df_names &lt;- names(df)
+## $ RV_weight        &lt;dbl&gt; 0.0260, 0.0100, 0.0240, 0.0260, 0.0200, 0.025...
+</code></pre>
+
+<p>##Retrieving units from the names</p>
+
+<pre><code class="language-r">df_names &lt;- names(df)
 df_names2 &lt;- df_names %&gt;%
                  stringr::str_to_lower()
 df_names3 &lt;- gsub(df_names2, pattern = &quot;cm\\.s&quot;, replacement = &quot;cm*s^-1&quot;)
@@ -419,15 +459,20 @@ df_names_list &lt;- strsplit(df_names4, &quot;\\.&quot;)
 units_list &lt;- lapply(df_names_list, tail, n = 1L)
 units_df &lt;- unlist(units_list)
 units_df[c(2,4)] &lt;- c(&quot;&quot;, &quot;gr&quot;)
-units_df</code></pre>
+units_df
+</code></pre>
+
 <pre><code>##  [1] &quot;id&quot;       &quot;&quot;         &quot;weeks&quot;    &quot;gr&quot;       &quot;gr&quot;       &quot;cm&quot;      
 ##  [7] &quot;cm&quot;       &quot;cm&quot;       &quot;cm&quot;       &quot;fraction&quot; &quot;cm*s^-1&quot;  &quot;ml&quot;      
 ## [13] &quot;ml&quot;       &quot;ratio&quot;    &quot;min&quot;      &quot;gr&quot;       &quot;gr&quot;       &quot;mm2&quot;     
-## [19] &quot;gr&quot;       &quot;gr&quot;</code></pre>
+## [19] &quot;gr&quot;       &quot;gr&quot;
+</code></pre>
+
 <p>Now we can pass the <code>units</code> vector to the <code>upData()</code> function of Hmisc in order to have the variables with units.</p>
-<pre class="r"><code>mice_harrel &lt;- upData(mice_MI,
-                      labels = c(ID = &#39;Identification Number&#39;,
-                                 Intervention = &#39;Sham or Surgery&#39;),
+
+<pre><code class="language-r">mice_harrel &lt;- upData(mice_MI,
+                      labels = c(ID = 'Identification Number',
+                                 Intervention = 'Sham or Surgery'),
                       levels = list(Intervention=list(Sham=&quot;Sham-operation&quot;, AMI = &quot;CAL&quot;)),
                       units = c(ID = units_df[1],
                                 Intervention = units_df[2],
@@ -438,325 +483,472 @@ units_df</code></pre>
                                 LVESD = units_df[7],
                                 LVPWT = units_df[8],
                                 LV_long_axis = units_df[9],
-                                LVEF = &#39;%&#39;,
+                                LVEF = '%',
                                 Sys_Vel = units_df[11],
                                 LVEDV = units_df[12],
                                 LVESV = units_df[13],
                                 WT_index = units_df[14],
-                                HR = &#39;bpm&#39;,
+                                HR = 'bpm',
                                 LV_weight = units_df[16],
                                 Scar_weight = units_df[17],
                                 Scar_area = units_df[18],
                                 wet_lung_weight = units_df[19],
-                                RV_weight = units_df[20]))</code></pre>
-<pre><code>## Input object size:    7816 bytes;     20 variables    31 observations
-## New object size: 12168 bytes;    20 variables    31 observations</code></pre>
-<pre class="r"><code>html(contents(mice_harrel), maxlevels=20, levelType=&#39;table&#39;)</code></pre>
-<hr><h4>Data frame:mice_harrel</h4>31 observations and 20 variables, maximum # NAs:0&#8195;&#8195;
- <hr>
- <style>
- .hmisctable339991 {
- border: 1px solid gray;
- border-collapse: collapse;
- font-size: 100%;
- }
- .hmisctable339991 td {
- text-align: right;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable339991 th {
- color: Black;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: bold;
- }
- </style>
- <table class="hmisctable339991" border="1">
- <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th></tr>
- <tr><td>ID</td><td>Identification Number</td><td>id</td><td></td><td>integer</td><td>integer</td></tr>
- <tr><td>Intervention</td><td>Sham or Surgery</td><td></td><td><a href="#levels.Intervention">2</a></td><td></td><td>integer</td></tr>
- <tr><td>Duration</td><td></td><td>weeks</td><td></td><td></td><td>integer</td></tr>
- <tr><td>BodyWeight_start</td><td></td><td>gr</td><td></td><td></td><td>integer</td></tr>
- <tr><td>BodyWeight_end</td><td></td><td>gr</td><td></td><td></td><td>integer</td></tr>
- <tr><td>LVEDD</td><td></td><td>cm</td><td></td><td></td><td>double</td></tr>
- <tr><td>LVESD</td><td></td><td>cm</td><td></td><td></td><td>double</td></tr>
- <tr><td>LVPWT</td><td></td><td>cm</td><td></td><td></td><td>double</td></tr>
- <tr><td>LV_long_axis</td><td></td><td>cm</td><td></td><td></td><td>double</td></tr>
- <tr><td>LVEF</td><td></td><td>%</td><td></td><td></td><td>integer</td></tr>
- <tr><td>Sys_Vel</td><td></td><td>cm*s^-1</td><td></td><td></td><td>double</td></tr>
- <tr><td>LVEDV</td><td></td><td>ml</td><td></td><td></td><td>double</td></tr>
- <tr><td>LVESV</td><td></td><td>ml</td><td></td><td></td><td>double</td></tr>
- <tr><td>WT_index</td><td></td><td>ratio</td><td></td><td></td><td>double</td></tr>
- <tr><td>HR</td><td></td><td>bpm</td><td></td><td></td><td>integer</td></tr>
- <tr><td>LV_weight</td><td></td><td>gr</td><td></td><td></td><td>double</td></tr>
- <tr><td>Scar_weight</td><td></td><td>gr</td><td></td><td></td><td>double</td></tr>
- <tr><td>Scar_area</td><td></td><td>mm2</td><td></td><td></td><td>integer</td></tr>
- <tr><td>wet_lung_weight</td><td></td><td>gr</td><td></td><td></td><td>double</td></tr>
- <tr><td>RV_weight</td><td></td><td>gr</td><td></td><td></td><td>double</td></tr>
- </table>
+                                RV_weight = units_df[20]))
+</code></pre>
 
- <hr>
- <style>
- .hmisctable694045 {
- border: 1px solid gray;
- border-collapse: collapse;
- font-size: 100%;
- }
- .hmisctable694045 td {
- text-align: right;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable694045 th {
- color: Black;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: bold;
- }
- </style>
- <table class="hmisctable694045" border="1">
- <tr><th>Variable</th><th>Levels</th></tr>
- <tr><td><a name="levels.Intervention">Intervention</a></td><td>Sham</td></tr>
- <tr><td></td><td>AMI</td></tr>
- </table>
+<pre><code>## Input object size:	 7816 bytes;	 20 variables	 31 observations
+## New object size:	12168 bytes;	20 variables	31 observations
+</code></pre>
 
- <hr>
+<pre><code class="language-r">html(contents(mice_harrel), maxlevels=20, levelType='table')
+</code></pre>
 
-</div>
-</div>
-<div id="exploratory-data-analysis" class="section level1">
-<h1>Exploratory Data Analysis</h1>
-<div id="descriptive-statistics-without-data-stratification" class="section level2">
-<h2>Descriptive Statistics without Data Stratification</h2>
-<p>At this moment it is possible to use some features of Hmisc package, as <code>describe()</code> and the nice <code>html()</code> rendering.</p>
-<pre class="r"><code>html(describe(mice_harrel), size = 80, scroll = F)</code></pre>
+<p>preservef6d010720e24ebcd</p>
+
+<p>#Exploratory Data Analysis
+##Descriptive Statistics without Data Stratification
+At this moment it is possible to use some features of Hmisc package, as <code>describe()</code> and the nice <code>html()</code> rendering.</p>
+
+<pre><code class="language-r">html(describe(mice_harrel), size = 80, scroll = F)
+</code></pre>
+
 <pre><code>## Warning in min(diff(sort(unique(xnum)))): no non-missing arguments to min;
-## returning Inf</code></pre>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<script type="text/javascript">
-<!--
-    function expand_collapse(id) {
-       var e = document.getElementById(id);
-       var f = document.getElementById(id+"_earrows");
-       if(e.style.display == 'none'){
-          e.style.display = 'block';
-          f.innerHTML = '&#9650';
-       }
-       else {
-          e.style.display = 'none';
-          f.innerHTML = '&#9660';
-       }
-    }
-//-->
-</script>
-<style>
-.earrows {color:silver;font-size:11px;}
+## returning Inf
+</code></pre>
 
-fcap {
- font-family: Verdana;
- font-size: 12px;
- color: MidnightBlue
- }
+<p>preserve6f03b6ebf205b779</p>
 
-smg {
- font-family: Verdana;
- font-size: 10px;
- color: &#808080;
-}
+<p>There is also the possibility to visualize it using Hmisc function <code>prList</code>:</p>
 
-hr.thinhr { margin-top: 0.15em; margin-bottom: 0.15em; }
+<pre><code class="language-r">prList(plot(describe(mice_harrel)), lcap=c('', 'These are spike histograms'), htmlfig=2)
+</code></pre>
 
-span.xscript {
-position: relative;
-}
-span.xscript sub {
-position: absolute;
-left: 0.1em;
-bottom: -1ex;
-}
-</style>
- <font color="MidnightBlue"><div align=center><span style="font-weight:bold">mice&#95;harrel <br><br> 20  Variables &#8195; 31  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">ID</span>: Identification Number&#8195;<span style='font-family:Verdana;font-size:75%;'>id</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAF4AAAANCAYAAAAgyNk3AAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL+3gCAo9Q/bPrQvlQol2tQgKD60+INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p+tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M+fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H+n23BaIXzbcOnz5mfPoTvYVz7KzUl5+FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp+krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5+XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH+hRkH25+L+sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX++DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG+fAPPI6tJnNwb7ClP7IyF+D+bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv+thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf+ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r+xafL549HQ5jH+an+1y+LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC+P/Hs+y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C+DU9+z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VVBg/m8AAAM/SURBVFgJ7danT7RdEMbhQ3vpEHoJoDCEZjAoBAqDwqAwGBQGhUFh+OuoCkMCoZfQO8+717yBPB+fB7OT7Oa3s+ecmbnN3Ono6ChbW1vLUkrZ+vp6trq6Gryzs5OtrKwE7+7uZsvLy8F7e3vZ0tJS8OHhYba4uJiVlZVl3llYWMiqq6uD5+fns4aGhuC5ubmspaUleHZ2Nuvq6gqemZnJ+vr6gqenp7P+/v7gqampbGBgIHhycjIbHR0NnpiYyMbGxoLHx8czH3Xl/IeddQd7w1vY22pgNdXGetET1qNesd7NgM1kNmxWM5udZrSgCaYRrTDtaIhpSltMa++Ud3Z2psbGxkIupfb29lQoGNzR0fEfrq+vj7zzea6rq0slJSVJPs+1tbWptLQ08jU1NanQ8P+4MFAqLy+PfJ6rqqpSRUVF5PNcWVmZXl9fI4+Fun/+/El+Y/fc+c7qqCGfZ33pTz7PejeDvPnM9p3Vp4X8J9NN0DHPtBW0dr40fhW/flyBovA/Lvm/gkXhi8L/kgK/VLZ8Y2Mj7e/vR/nCFk4HBwfB29vbqbC5g7e2tlJhEwdvbm6m4+PjYHdPTk5SlmUJn56epo+Pj+Czs7P0/v4efH5+HkvRmYuLi/Ty8hL5y8vL9Pz8HHx1dZWenp6Cr6+v0+PjY/DNzU16eHgIvr29/eK7u7uvHu7v7796cNYdtbzhLextNbCaamO96Alb3HrFejcDNpPZsFnNjAUtaCJoRCtBOxoKmtJW0Nrd0oL9Sr29vZEcHBxMPT09wUNDQ6m7uzt4eHg4FWxX8MjIyNcWd9fmtvWxzc0N4La2tnAJuLW1NdwGLli2cCG4ubk53AhuamoKN4Jtfg4EcwdcB+YgOA3MZfhgOf9hZ93B3vAW5nTUwByQ2pgj0hPmiPSKORwzYDOZDZvVzFhwKDQRNKKVoB0NBU1pK2gdb8av4tePK1Bcrj8u+b+CReGLwv+SAr9UttxWtvmFzc0RCJs7zxyFcD7P3IVNL59nToMbkOc0uITvzHW8vb1FPs8cCIfhfJ65ES5EHn/2I+e3vHvufGd11JDPs770J59nvZtB3nxm+87q00L+k+kmaJdn2gpaO/8XM7zTN12z8FQAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable178043 {
- border: none;
- font-size: 80%;
- }
- .hmisctable178043 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable178043 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable178043">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>31</td><td>0</td><td>31</td><td>1</td><td>16</td><td>10.67</td><td> 2.5</td><td> 4.0</td><td> 8.5</td><td>16.0</td><td>23.5</td><td>28.0</td><td>29.5</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&#160;:  1  2  3  4  5 ,  <font color="MidnightBlue">highest</font>: 27 28 29 30 31</span> <hr class="thinhr"> <span style="font-weight:bold">Intervention</span>: Sham or Surgery <style>
- .hmisctable682934 {
- border: none;
- font-size: 80%;
- }
- .hmisctable682934 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable682934 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable682934">
- <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>31</td><td>0</td><td>2</td></tr>
- </table>
- <pre style="font-size:85%;">
- Value       Sham   AMI
- Frequency     16    15
- Proportion 0.516 0.484
- </pre>
- <hr class="thinhr"> <span style="font-weight:bold">Duration</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>weeks</span> <style>
- .hmisctable196267 {
- border: none;
- font-size: 80%;
- }
- .hmisctable196267 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable196267 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable196267">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>31</td><td>0</td><td>1</td><td>0</td><td>3</td><td>0</td></tr>
- </table>
- <pre style="font-size:85%;">
- Value       3
- Frequency  31
- Proportion  1
- </pre>
- <hr class="thinhr"> <span style="font-weight:bold">BodyWeight&#95;start</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>gr</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-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" alt="image" /></div> <style>
- .hmisctable875504 {
- border: none;
- font-size: 80%;
- }
- .hmisctable875504 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable875504 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable875504">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>31</td><td>0</td><td>9</td><td>0.98</td><td>25.06</td><td>3.578</td></tr>
- </table>
- <pre style="font-size:85%;">
- Value         20    22    23    24    25    26    27    28    30
- Frequency      5     1     4     1     6     3     5     2     4
- Proportion 0.161 0.032 0.129 0.032 0.194 0.097 0.161 0.065 0.129
- </pre>
- <hr class="thinhr"> <span style="font-weight:bold">BodyWeight&#95;end</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>gr</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAACIAAAANCAYAAADMvbwhAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL+3gCAo9Q/bPrQvlQol2tQgKD60+INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p+tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M+fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H+n23BaIXzbcOnz5mfPoTvYVz7KzUl5+FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp+krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5+XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH+hRkH25+L+sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX++DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG+fAPPI6tJnNwb7ClP7IyF+D+bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv+thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf+ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r+xafL549HQ5jH+an+1y+LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC+P/Hs+y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C+DU9+z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VVBg/m8AAAF1SURBVDgR7VSxisJAEH13pLJJUgTsrLRPLwbsbPQXAmJraWXpN/gBNha2FmKqdCEgKAhWEbRR0SIkikENMbNwFuY8NtwdXHEDCbszb9/O7BvmbbPZRPhhGwwGaDabsCwLuVyOi13IZrNcwDQgSZIYXFEU8PK/p7ngN7H/iTy/7p95EWE2mz0n9+39er1mHIvFAr7v8/FFKex8PnOhe70ejYTIcRwuPIG4pTkcDpBlGaPRiK/ClCjuRDzPQxAE2O/3iStarRZqtVrCn8aRSKTb7aJarbLKVVXF7XZ7yafrOjqdDpbLJfv6/T5KpdJL/FcBoV6vQ9M0rFYrxFIhHvmwbRvlchnT6RSn0wmiKH7KMZlMcDweH7H5fM7GeqPRePhoEYYhKpUK2u12ItG4n2CaJoThcIjL5YK4sdjhfD7PDpIUZLvdDnGTPiRxXRfb7ZbFrtcrk4s2tKakqBjCkJGMmUwGxGUYBorFIgqFAot9/Mg/Ho9xB2FTHgSZncliAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable788260 {
- border: none;
- font-size: 80%;
- }
- .hmisctable788260 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable788260 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable788260">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>31</td><td>0</td><td>11</td><td>0.939</td><td>27.55</td><td>3.931</td><td>21.5</td><td>22.0</td><td>25.0</td><td>29.0</td><td>30.0</td><td>30.0</td><td>31.0</td></tr>
- </table>
- <pre style="font-size:85%;">
- Value         20    21    22    23    25    27    28    29    30    32    35
- Frequency      1     1     2     2     4     2     3     2    12     1     1
- Proportion 0.032 0.032 0.065 0.065 0.129 0.065 0.097 0.065 0.387 0.032 0.032
- </pre>
- <hr class="thinhr"> <span style="font-weight:bold">LVEDD</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>cm</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-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" alt="image" /></div> <style>
- .hmisctable201515 {
+<pre><code>## Warning in min(diff(sort(unique(xnum)))): no non-missing arguments to min;
+## returning Inf
+</code></pre>
+
+<pre><code>## 
+## 
+## ### &lt;span style=&quot;font-family:Verdana;font-size:10px;&quot;&gt;&amp;#8735; &lt;/span&gt;&lt;span style=&quot;font-family:Verdana;font-size:12px;color:MidnightBlue;&quot;&gt;Categorical&lt;/span&gt;
+</code></pre>
+
+<p><img src="2017-08-08-AMI_mice_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+
+<pre><code>## 
+## 
+## ### &lt;span style=&quot;font-family:Verdana;font-size:10px;&quot;&gt;&amp;#8735; &lt;/span&gt;&lt;span style=&quot;font-family:Verdana;font-size:12px;color:MidnightBlue;&quot;&gt;Continuous&lt;/span&gt;
+## &lt;span style=&quot;font-family:Verdana;font-size:12px;color:MidnightBlue;&quot;&gt;These are spike histograms&lt;/span&gt;
+</code></pre>
+
+<p><img src="2017-08-08-AMI_mice_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+
+<p>Again it is a visual recap of how the variables are distributed.</p>
+
+<p>##Descriptive Statistics with Data Stratification</p>
+
+<pre><code class="language-r">mice_strata &lt;- summaryM(BodyWeight_end+
+                        LVEDD + LVESD + 
+                        LV_long_axis + LVEF +
+                        LVEDV + LVESV +
+                        WT_index + HR +
+                        LV_weight + 
+                        Scar_weight + Scar_area +
+                        wet_lung_weight +
+                        RV_weight ~ Intervention, data = mice_harrel, overall = FALSE, test = TRUE)
+</code></pre>
+
+<pre><code class="language-r">html(mice_strata, exclude1=FALSE, npct='both', digits=3,
+     prmsd=TRUE, brmsd=TRUE)
+</code></pre>
+
+<p>preserve00ae9aff348676dd</p>
+
+<p>##Data Visualization
+The graphics tool <code>ggplot2</code> provides a meaningful and consistent syntax for efficient plotting. In order to feed gglplot with understandable data, sometimes they need to be rearranged in a &ldquo;tidy&rdquo; format.</p>
+
+<p>###Body weight after three weeks from Sham Operation or Myocardial Infarction
+Let&rsquo;s consider at first the <em>body weight</em> variables. We want to see if surgery and infarction has an influence on it. We need to compare the first group &ldquo;Sham operation&rdquo; at baseline and after 3 weeks and the second group &ldquo;AMI&rdquo; also. To do so we must consider at first the variables <code>ID</code>, <code>Intervention</code>,  <code>BodyWeight_start</code>, <code>BodyWeight_end</code>. A subsetted dataframe of this kind with 4 variables is not &ldquo;tidy&rdquo;: the last two variables must be rearranged in order to generate a &ldquo;Timing&rdquo; i.e. &ldquo;start&rdquo; and &ldquo;end&rdquo; and the actual &ldquo;value&rdquo;. The <code>dplyr</code> package provides functions for it.</p>
+
+<pre><code class="language-r">body_weight &lt;- mice_harrel %&gt;% select(ID, Intervention, BodyWeight_start, BodyWeight_end) %&gt;% #subset the original dataset
+                    gather(key, value, c(BodyWeight_start, BodyWeight_end)) %&gt;% #gather the label body weight separating from values
+                    separate(key,into = c(&quot;label&quot;, &quot;Time&quot;), sep = &quot;_&quot;) %&gt;% #separate the label from the actual timing
+                    select(-label) %&gt;% #drop the label column
+                    rename(Weight = value) #rename the value column into &quot;Weight&quot;
+
+head(body_weight)
+</code></pre>
+
+<pre><code>##   ID Intervention  Time Weight
+## 1  1         Sham start     30
+## 2  2         Sham start     27
+## 3  3         Sham start     26
+## 4  4         Sham start     23
+## 5  5         Sham start     25
+## 6  6         Sham start     26
+</code></pre>
+
+<pre><code class="language-r">tail(body_weight)
+</code></pre>
+
+<pre><code>##    ID Intervention Time Weight
+## 57 26          AMI  end     30
+## 58 27          AMI  end     30
+## 59 28          AMI  end     35
+## 60 29          AMI  end     28
+## 61 30          AMI  end     30
+## 62 31          AMI  end     25
+</code></pre>
+
+<p>Now it let&rsquo;s use ggplot to produce a good visualization on how the body weight changes over time and depending on the occurrence of acute myocardial infarction (AMI).</p>
+
+<pre><code class="language-r">ggplot(body_weight, aes(x = factor(Time, levels = c(&quot;start&quot;, &quot;end&quot;)), y = Weight, fill = factor(Time), group = factor(ID))) +
+    geom_point(shape = 21, alpha = 0.6, size = 3) +
+    geom_line(alpha = 0.1, linetype = 2) +
+    scale_x_discrete(name = &quot;Time&quot;, 
+                     labels = c(&quot;start&quot; = &quot;Start&quot;, &quot;end&quot; = &quot;End&quot;)) +
+    scale_y_continuous(name = &quot;Mice Weight&quot;, 
+                       limits = c(min(body_weight$Weight)-2, max(body_weight$Weight)+2)) +
+    scale_fill_discrete(name = &quot;Time&quot;, 
+                        breaks = c(&quot;start&quot;, &quot;end&quot;), 
+                        labels = c(&quot;start&quot; = &quot;Start&quot;, &quot;end&quot; = &quot;End&quot;)) +
+    ggtitle(&quot;Body Weight during the Study&quot;) +
+    facet_grid(.~Intervention) 
+</code></pre>
+
+<p><img src="2017-08-08-AMI_mice_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+
+<p>###Ventricular Remodeling - End Diastolic Diameter
+It is well know that myocardial in results in loss of myocytes and myocardial remodeling, i.e. a dilatation of the left ventricle; this dilatation can be measured using end-diastolic and end-systolic diameter and volume.
+We can explore and visualise what happens in the two conditions.
+First let&rsquo;s consider the variable of interest <code>ID</code>, <code>Intervention</code>, <code>LVEDD</code>, <code>LVESD</code>, <code>LVEDV</code> and <code>LVESV</code>. In this case there is no pre and post measure and we must consider only the difference between those undergoing &ldquo;Sham&rdquo; operation and &ldquo;AMI&rdquo; operation.
+Then we must rearrange the dataframe in a tidy format namely <code>ID</code>, <code>Intervention</code>, <code>Phase</code>, <code>Measurement</code> and <code>Value</code>. Of note, we must be very careful since in the same column <code>Value</code> there will be a mix of cm and ml; so I&rsquo;ll create the <code>Phase</code> variable consisting in two levels, diastole and systole, and <code>Measurement</code> that also has two levels: volume, diameter. It will result in a quite complex, but visually informative graph that will explain the evolution of cardiac remodelling.</p>
+
+<pre><code class="language-r">remod_diam &lt;- mice_harrel %&gt;% select(ID, Intervention, LVEDD, LVESD) %&gt;%
+                                rename(Diastolic_Diameter = LVEDD, Systolic_Diameter = LVESD) %&gt;%
+                                gather(key, value, c(Diastolic_Diameter, Systolic_Diameter)) %&gt;%
+                                separate(key, c(&quot;Phase&quot;, &quot;Measure&quot;), sep = &quot;_&quot;)
+
+remod_vol &lt;- mice_harrel %&gt;% select(ID, Intervention, LVEDV, LVESV) %&gt;%
+                                rename(Diastolic_Volume = LVEDV, Systolic_Volume = LVESV) %&gt;%
+                                gather(key, value, c(Diastolic_Volume, Systolic_Volume)) %&gt;%
+                                separate(key, c(&quot;Phase&quot;, &quot;Measure&quot;), sep = &quot;_&quot;)
+
+
+head(remod_diam)
+</code></pre>
+
+<pre><code>##   ID Intervention     Phase  Measure value
+## 1  1         Sham Diastolic Diameter  0.26
+## 2  2         Sham Diastolic Diameter  0.37
+## 3  3         Sham Diastolic Diameter  0.29
+## 4  4         Sham Diastolic Diameter  0.33
+## 5  5         Sham Diastolic Diameter  0.33
+## 6  6         Sham Diastolic Diameter  0.36
+</code></pre>
+
+<pre><code class="language-r">head(remod_vol)
+</code></pre>
+
+<pre><code>##   ID Intervention     Phase Measure value
+## 1  1         Sham Diastolic  Volume  0.13
+## 2  2         Sham Diastolic  Volume  0.12
+## 3  3         Sham Diastolic  Volume  0.12
+## 4  4         Sham Diastolic  Volume  0.10
+## 5  5         Sham Diastolic  Volume  0.09
+## 6  6         Sham Diastolic  Volume  0.09
+</code></pre>
+
+<pre><code class="language-r">heart_remodeling &lt;- remod_diam %&gt;% full_join(remod_vol, by = c(&quot;ID&quot;, &quot;Intervention&quot;, &quot;Measure&quot;, &quot;Phase&quot;, &quot;value&quot;))
+
+head(heart_remodeling)
+</code></pre>
+
+<pre><code>##   ID Intervention     Phase  Measure value
+## 1  1         Sham Diastolic Diameter  0.26
+## 2  2         Sham Diastolic Diameter  0.37
+## 3  3         Sham Diastolic Diameter  0.29
+## 4  4         Sham Diastolic Diameter  0.33
+## 5  5         Sham Diastolic Diameter  0.33
+## 6  6         Sham Diastolic Diameter  0.36
+</code></pre>
+
+<pre><code class="language-r">tail(heart_remodeling)
+</code></pre>
+
+<pre><code>##     ID Intervention    Phase Measure value
+## 119 26          AMI Systolic  Volume  0.58
+## 120 27          AMI Systolic  Volume  0.38
+## 121 28          AMI Systolic  Volume  0.38
+## 122 29          AMI Systolic  Volume  0.31
+## 123 30          AMI Systolic  Volume  0.18
+## 124 31          AMI Systolic  Volume  0.36
+</code></pre>
+
+<p>Once we have created this long format dataset, we can unleash the ggplot power to visualize the cardiac remodeling in terms of diameter and volume.</p>
+
+<pre><code class="language-r">ggplot(heart_remodeling, aes(x = factor(Intervention), y = value, fill = factor(Intervention))) +
+    geom_point(shape = 21, position = position_jitterdodge()) +
+    stat_summary(fun.y = &quot;median&quot;, fun.ymin = &quot;median&quot;, fun.ymax= &quot;median&quot;, 
+                 geom = &quot;crossbar&quot;, size= 0.15, width = 0.4, col = &quot;black&quot;) +
+    scale_y_log10(&quot;Value&quot;) +
+    scale_x_discrete(&quot;Intervention&quot;) +
+    scale_fill_discrete(&quot;Intervention&quot;) + 
+    ggtitle(&quot;Cardiac Remodeling&quot;) +
+    facet_grid(Measure~Phase, switch = &quot;y&quot;)
+</code></pre>
+
+<p><img src="2017-08-08-AMI_mice_files/figure-html/Visualization of Heart Remodeling-1.png" width="672" /></p>
+
+<p>In this case, due to the spread of Volumes after AMI, I decided to convert the y-axis into a log10 form. In this way is pretty clear that median values are higher after myocardial infarction, no matter which paramenter is considered.</p>
+
+<p>###Ejection fraction after Myocardial Infarction
+Loss of contractile units after myocardial infarction results in a decrease of overall cardiac function that can be assessed with echocardiography and parametrized using the &ldquo;Ejection Fraction&rdquo;.
+With <code>ggplot</code> now we can visualize the differences; we&rsquo;ll select <code>ID</code>, <code>Intervention</code> and <code>LVEF</code> for a pretty quick and easy graph. In this case the selected columns are already in a tidy format and no further manipulation is required.</p>
+
+<pre><code class="language-r">ggplot(mice_harrel, aes(x= factor(Intervention, levels = c(&quot;Sham&quot;, &quot;AMI&quot;)), y = LVEF)) +
+    geom_boxplot(width = 0.4) +
+    geom_point(aes(fill = Intervention), position = position_jitterdodge(), shape = 21) +
+    scale_x_discrete(&quot;Intervention&quot;) +
+    scale_y_continuous(&quot;Ejection Fraction %&quot;) +
+    ggtitle(&quot;Ejection Fraction - Effect of AMI&quot;)
+</code></pre>
+
+<p><img src="2017-08-08-AMI_mice_files/figure-html/Ejection Fraction after AMI-1.png" width="672" /></p>
+
+<p>###Infarct size and correlation with ejection fraction
+Intuitively a loss of contractile units in myocardial infarction results in a decreased ejection fraction, but of which extent? This question can be addressed exploring the correlation between the infarct size, in our case the scar area, and the ejection fraction. To do so, we must select only those animals that underwent myocardial infarction and the variables <code>ID</code>, <code>Intervention</code>, <code>LVEF</code> and <code>Scar_area</code>.</p>
+
+<pre><code class="language-r">ef_scar &lt;- mice_harrel %&gt;% select(ID, Intervention, LVEF, Scar_area) %&gt;%
+                filter(Intervention == &quot;AMI&quot;)
+</code></pre>
+
+<p>and now we plot their relationship, but first let&rsquo;s calculate its fit using regression</p>
+
+<pre><code class="language-r">ef_scar_fit &lt;- lm(ef_scar$LVEF~ef_scar$Scar_area)
+summary(ef_scar_fit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = ef_scar$LVEF ~ ef_scar$Scar_area)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -11.0980  -4.4428   0.2124   4.2468  15.0572 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        49.4172     9.4487   5.230 0.000162 ***
+## ef_scar$Scar_area  -0.5388     0.2593  -2.078 0.058106 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.486 on 13 degrees of freedom
+## Multiple R-squared:  0.2493,	Adjusted R-squared:  0.1916 
+## F-statistic: 4.317 on 1 and 13 DF,  p-value: 0.05811
+</code></pre>
+
+<pre><code class="language-r">ggplot(ef_scar, aes(x = Scar_area, y = LVEF)) +
+    geom_point(alpha = 0.6) +
+    stat_smooth(geom = &quot;smooth&quot;, se = T, show.legend = T, method = &quot;lm&quot;) +
+    annotate(&quot;text&quot;, x = 45, y = 42, label = paste(&quot;Adj R^2&quot;, &quot;=&quot;, signif(summary(ef_scar_fit)$adj.r.squared, 2))) +
+    annotate(&quot;text&quot;, x = 45, y = 40, label = paste(&quot;p-value&quot;, &quot;=&quot;, signif(summary(ef_scar_fit)$coef[2,4], 2))) +
+    #annotate(&quot;text&quot;, x = 45, y = 42, label = &quot;paste(italic(R) ^ 2, \&quot; = .75\&quot;)&quot;, parse = TRUE) +
+    scale_x_continuous(&quot;Scar Area (%)&quot;) +
+    scale_y_continuous(&quot;LV ejection fraction (%)&quot;) +
+    ggtitle(&quot;Correlation Infarct Size and Ejection Fraction&quot;)
+</code></pre>
+
+<p><img src="2017-08-08-AMI_mice_files/figure-html/Plot ejection fraction explained by scar area-1.png" width="672" /></p>
+
+<p>###Ratio of LV weight to body weight
+Another parameter of remodeling is the ratio of LV weight to body weight. First select the variables <code>ID</code>, <code>BodyWeight_end</code> and <code>Scar_weight</code>.</p>
+
+<pre><code class="language-r">ratio_lv_body &lt;- mice_harrel %&gt;% select(ID, Intervention, BodyWeight_end, LV_weight) %&gt;%
+                                    mutate(ratio = LV_weight/BodyWeight_end*1000) 
+</code></pre>
+
+<pre><code class="language-r">summaryM(ratio ~ Intervention, data = ratio_lv_body, test = T)
+</code></pre>
+
+<pre><code>## 
+## 
+## Descriptive Statistics  (N=31)
+## 
+## +-----+--------------------------+--------------------------+-------------------------+
+## |     |Sham                      |AMI                       |  Test                   |
+## |     |(N=16)                    |(N=15)                    |Statistic                |
+## +-----+--------------------------+--------------------------+-------------------------+
+## |ratio|2.894704/3.000000/3.367965|2.500000/2.869565/3.073333|  F=2.5 d.f.=1,29 P=0.125|
+## +-----+--------------------------+--------------------------+-------------------------+
+</code></pre>
+
+<pre><code class="language-r">ggplot(ratio_lv_body, aes(x = Intervention, ratio)) +
+    geom_boxplot(width = 0.4) +
+    geom_point(aes(fill = Intervention), position = position_jitterdodge(), shape = 21) +
+    scale_x_discrete(&quot;Intervention&quot;) +
+    scale_y_continuous(&quot;Ratio (g/kg)&quot;) +
+    ggtitle(&quot;LV weight to Body weight ratio&quot;) +
+    annotate(geom = &quot;text&quot;, x = 1.5, y = 4.35, label = &quot;p = 0.12&quot;) +
+    annotate(&quot;segment&quot;, x = 1, xend = 2, y = 4.25, yend = 4.25, colour = &quot;black&quot;) +
+    annotate(&quot;segment&quot;, x = 1, xend = 1, y = 4.25, yend = 4.20, colour = &quot;black&quot;) +
+    annotate(&quot;segment&quot;, x = 2, xend = 2, y = 4.25, yend = 4.20, colour = &quot;black&quot;)
+</code></pre>
+
+<p><img src="2017-08-08-AMI_mice_files/figure-html/Graph Ratio LV body weight-1.png" width="672" /></p>
+
+<p>###Relationship of LV End-Diastolic-Diameter with LVEDV and Infarct size
+Now we can explore the relationship between LVEDD explained by LVEDV and Infarct size.</p>
+
+<pre><code class="language-r">lvedd_rel &lt;- mice_harrel %&gt;% 
+                mutate(Inf_size = ifelse(Scar_area == 0, &quot;Sham&quot;, 
+                                         ifelse(Scar_area &gt;= 40, &quot;Large&quot;, &quot;Moderate&quot;))) %&gt;%
+                select(ID, Intervention, LVEDD, LVEDV, Inf_size, Scar_area)
+</code></pre>
+
+<p>Now we can construct the regression plots</p>
+
+<pre><code class="language-r">ggplot(lvedd_rel, aes(LVEDV, LVEDD, col = Intervention)) +
+    geom_point(aes(shape = Inf_size)) +
+    geom_smooth(method = &quot;lm&quot;, se = F)
+</code></pre>
+
+<p><img src="2017-08-08-AMI_mice_files/figure-html/Regression plot LVEDD LVEDV-1.png" width="672" /></p>
+
+<pre><code class="language-r">lvedd_inf &lt;- lvedd_rel %&gt;% filter(Intervention == &quot;AMI&quot;)
+
+ggplot(lvedd_inf, aes(Scar_area, LVEDD)) + 
+    geom_point(pch = 21) +
+    geom_smooth(method = &quot;lm&quot;, se = F) + 
+    scale_x_continuous(name = &quot;Scar Area&quot;) +
+    scale_y_continuous(name = &quot;LVEDD&quot;) +
+    ggtitle(&quot;LVEDD and Infarct Size&quot;)
+</code></pre>
+
+<p><img src="2017-08-08-AMI_mice_files/figure-html/Regression LVEDD and Infarct size-1.png" width="672" /></p>
+
+    </div>
+  </div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="/post/getting-started/"><span
+      aria-hidden="true">&larr;</span> Getting started with the Academic framework for Hugo</a></li>
+    
+
+    
+    <li class="next"><a href="/post/ami_mice/">Acute Myocardial Infarction in a pre-clinical model: Insights from an Open Dataset <span
+      aria-hidden="true">&rarr;</span></a></li>
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017 Giacomo Bianchi &middot; 
+
+      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
+      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.2/imagesloaded.pkgd.min.js" integrity="sha512-iHzEu7GbSc705hE2skyH6/AlTpOfBmkx7nUqTLGzPYR+C1tRaItbRlJ7hT/D3YQ9SV0fqLKzp4XY9wKulTBGTw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" integrity="sha512-Z5heTz36xTemt1TbtbfXtTq5lMfYnOkXM2/eWcTTiLU01+Sw4ku1i7vScDc8fWhrP2abz9GQzgKH5NGBLoYlAw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js" integrity="sha512-CDeU7pRtkPX6XJtF/gcFWlEwyaX7mcAp5sO3VIu/ylsdR74wEw4wmBpD5yYTrmMAiAboi9thyBUr1vXRPA7t0Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-tOav5w1OjvsSJzePRtt2uQPFwBoHt1VZcUq8l8nm5284LEKE9FSJBQryzMBzHxY5P0zRdNqEcpLIRVYFNgu1jw==" crossorigin="anonymous"></script>
+    
+    
+
+  </body>
+</html>
+
+yObZ7f39fq/8pQmmVN51OaTabqRWEbzzrSMi19uvsvrtMqVQqUmLs9/s0HA4Z6/r6mp6enjiZ6/Dr9TrbXV1d0fb2tpT5/wSIsmg1+vj4IJ1ORwaDYSUGUVFGo5HG4zEpisKj2WxWbZG0RYsyBoRer5f29/dJr9eT3+8nrS30brcbAwUCAfbjj8VLxDGZTBjLZDIJlTpirmU8VbnEjEYjEhhaP/CIDWuCDUhgQoc8QI84hBw20MFncaxwHrhtT09PKZlMQr9CqVSK4vE4yyORCMViMXI4HJxACGu1GtlsNup2u6rv8fEx/+thkr29PSoWi6ruV0wikaCTkxPa3d0ln89H2Wz2i3m5XOa5qtXqF/mmj4ODA1qcr/Ty8sKYpVKJ40K8wWCQ1+JyuXij8/k83dzcMH44HKZoNMqxv729Mfzz8zPhV+zo6IiQL5CCF1psMBiAXSE4QQ8Cj+rrdDq8Y1tbW9RqtXiHUDWicnGbiv884Ar/FfAlAexQCdhh7bzCDDJUQ7PZ5OoW8k0j8PAgXoEJfzzAQlWK5MAOuEKHuPH0ej1OWrvd5tjgJ3Il7cLYtIC/Wf4/eb+xu8rDwwO3ItoF/DKh3FHK0KE1wYMeHx8JNyzOE5C2bXHWwQ4jCCWvxUYbgYBhsViYxws+wAHBFy2j9cMRAcKcWjkL17wEBloNhBYVMeE3SawFOsSE4wakXSfaGZekwIAPji7M/wnmBdNVQBQoJAAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable364760 {
  border: none;
  font-size: 70%;
  }
- .hmisctable201515 td {
+ .hmisctable364760 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable201515 th {
+ .hmisctable364760 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable201515">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>31</td><td>0</td><td>23</td><td>0.998</td><td>0.4503</td><td>0.1416</td><td>0.300</td><td>0.330</td><td>0.360</td><td>0.410</td><td>0.575</td><td>0.620</td><td>0.635</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&#160;: 0.26 0.29 0.31 0.33 0.34 ,  <font color="MidnightBlue">highest</font>: 0.60 0.62 0.63 0.64 0.70</span> <hr class="thinhr"> <span style="font-weight:bold">LVESD</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>cm</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-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" alt="image" /></div> <style>
- .hmisctable377718 {
- border: none;
- font-size: 70%;
- }
- .hmisctable377718 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable377718 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable377718">
+ <table class="hmisctable364760">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>26</td><td>0.999</td><td>0.3281</td><td>0.1864</td><td>0.130</td><td>0.150</td><td>0.200</td><td>0.270</td><td>0.495</td><td>0.550</td><td>0.575</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&#160;: 0.07 0.12 0.14 0.15 0.18 ,  <font color="MidnightBlue">highest</font>: 0.54 0.55 0.56 0.59 0.60</span> <hr class="thinhr"> <span style="font-weight:bold">LVPWT</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>cm</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAABMAAAANCAYAAABLjFUnAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL+3gCAo9Q/bPrQvlQol2tQgKD60+INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p+tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M+fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H+n23BaIXzbcOnz5mfPoTvYVz7KzUl5+FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp+krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5+XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH+hRkH25+L+sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX++DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG+fAPPI6tJnNwb7ClP7IyF+D+bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv+thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf+ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r+xafL549HQ5jH+an+1y+LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC+P/Hs+y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C+DU9+z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VVBg/m8AAAEwSURBVCgVlVJNq4JAFD2Ju8RFYbRX127bt/EP+Gvc93fcB+7aSYHQRqyNCAmhIERkkb7uvDfDI8qPs5h77jn3XHDG0el0avCGzWYDx3HgeR4Wi8Wb+72V5/O5cM/nMzRNw2QyYdp0OsV/Xwx+IRLXgyDAbDbDfr/n0uAqlpVlycK8Dt70CohlfcLX6xWr1QqXy+Xj+KBlu90OruuCruQT5DAMmX48HlmN4xiPx4Pxw+EAVVVFjjwC6fyRhPkismVZrKeXJJimiaqqGDcMA+PxGMvlEr7vg3qCruvgOSb8HZ2fmaYpkiQB1S7IXQN9/KZpsF6vIT2fzz7zrTPb7Ra2bUNSFAX8YlsTLSZ/MPl2uyGKItA/RMjzHPf7XfC6rhkvigKS9HvFxLMsYzodlCH8AJvKfE3IUk2GAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable713150 {
+ .hmisctable194547 {
  border: none;
  font-size: 80%;
  }
- .hmisctable713150 td {
+ .hmisctable194547 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable713150 th {
+ .hmisctable194547 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable713150">
+ <table class="hmisctable194547">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>31</td><td>0</td><td>6</td><td>0.941</td><td>0.09452</td><td>0.01626</td></tr>
  </table>
@@ -767,85 +959,85 @@ iVBORw0KGgoAAAANSUhEUgAAABMAAAANCAYAAABLjFUnAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1o
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">LV&#95;long&#95;axis</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>cm</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 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" alt="image" /></div> <style>
- .hmisctable832263 {
+ .hmisctable969928 {
  border: none;
  font-size: 70%;
  }
- .hmisctable832263 td {
+ .hmisctable969928 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable832263 th {
+ .hmisctable969928 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable832263">
+ <table class="hmisctable969928">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>22</td><td>0.998</td><td>0.7519</td><td>0.1331</td><td>0.595</td><td>0.600</td><td>0.650</td><td>0.750</td><td>0.845</td><td>0.900</td><td>0.910</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&#160;: 0.56 0.59 0.60 0.62 0.63 ,  <font color="MidnightBlue">highest</font>: 0.85 0.88 0.90 0.91 0.95</span> <hr class="thinhr"> <span style="font-weight:bold">LVEF</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>&&#35;37</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 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" alt="image" /></div> <style>
- .hmisctable878472 {
+ .hmisctable728219 {
  border: none;
  font-size: 80%;
  }
- .hmisctable878472 td {
+ .hmisctable728219 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable878472 th {
+ .hmisctable728219 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable878472">
+ <table class="hmisctable728219">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>26</td><td>0.999</td><td>55.03</td><td>29.3</td><td>21.0</td><td>25.0</td><td>27.5</td><td>60.0</td><td>79.0</td><td>84.0</td><td>86.0</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&#160;: 18 20 22 25 26 ,  <font color="MidnightBlue">highest</font>: 83 84 85 87 92</span> <hr class="thinhr"> <span style="font-weight:bold">Sys&#95;Vel</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>cm*s<sup>-1</sup></span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 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" alt="image" /></div> <style>
- .hmisctable832823 {
+ .hmisctable817974 {
  border: none;
  font-size: 80%;
  }
- .hmisctable832823 td {
+ .hmisctable817974 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable832823 th {
+ .hmisctable817974 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable832823">
+ <table class="hmisctable817974">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>22</td><td>0.996</td><td>2.472</td><td>0.949</td><td>1.20</td><td>1.30</td><td>2.00</td><td>2.50</td><td>3.05</td><td>3.40</td><td>3.75</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&#160;: 1.07 1.10 1.30 1.55 1.60 ,  <font color="MidnightBlue">highest</font>: 3.20 3.30 3.40 3.60 3.90</span> <hr class="thinhr"> <span style="font-weight:bold">LVEDV</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>ml</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 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" alt="image" /></div> <style>
- .hmisctable479176 {
+ .hmisctable317540 {
  border: none;
  font-size: 70%;
  }
- .hmisctable479176 td {
+ .hmisctable317540 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable479176 th {
+ .hmisctable317540 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable479176">
+ <table class="hmisctable317540">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>18</td><td>0.988</td><td>0.2135</td><td>0.1649</td><td>0.090</td><td>0.100</td><td>0.115</td><td>0.130</td><td>0.215</td><td>0.490</td><td>0.555</td></tr>
  </table>
@@ -860,22 +1052,22 @@ iVBORw0KGgoAAAANSUhEUgAAADcAAAANCAYAAAANOvaNAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1o
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">LVESV</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>ml</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAYAAADWgVyvAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL+3gCAo9Q/bPrQvlQol2tQgKD60+INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p+tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M+fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H+n23BaIXzbcOnz5mfPoTvYVz7KzUl5+FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp+krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5+XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH+hRkH25+L+sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX++DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG+fAPPI6tJnNwb7ClP7IyF+D+bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv+thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf+ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r+xafL549HQ5jH+an+1y+LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC+P/Hs+y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C+DU9+z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VVBg/m8AAAGBSURBVEgN7ZW9isJAFIXPbqbQIn3aaGFpI9oIaXwDG58gTxBsbLbwEazSCDZ2FnaCL2EeQZD4E4yK/0bH3AGHXRciFlsM7IHAvZkzHzd3LpkP3/e5ZVnI5XJwXReqiBmGAcYYUqkUKFZFn6oU+lznf+HPHfnrXNmOs9FohOPxiNVqBYpVEcvn8+KPous6KFZFYlRutxv6/T663a4qdUOLL5+vTqeD7XaLIAgQRRE8z0O73UapVEI6nZYf02q1xEhls1n57t1gs9mgXq//Yr/LgW3bXNM0Hm8UTzwuvFAoiHg4HHJSfCJ8PB7zTCbDq9UqPxwOnG7cVyLfbDaTtjAM+WAw+MGmxd1ux+fzufQlBcQjbuJfJQaIRtAImaaJ8/mMXq+HWq2GYrH4skmNRgPlcln6aF+z2RT5g02J4zioVCrSlxQQj7hsv9/jO+Ryuch8uVxiOp1iMpnger2KMSIvjRQdOa0lKe4i1uu19BHvdDqJLQ82JYvFQozgKx55iUfcO6u1LKFVJ29iAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable905354 {
+ .hmisctable185115 {
  border: none;
  font-size: 70%;
  }
- .hmisctable905354 td {
+ .hmisctable185115 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable905354 th {
+ .hmisctable185115 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable905354">
+ <table class="hmisctable185115">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>15</td><td>0.974</td><td>0.1248</td><td>0.1524</td><td>0.015</td><td>0.020</td><td>0.020</td><td>0.040</td><td>0.155</td><td>0.380</td><td>0.410</td></tr>
  </table>
@@ -890,85 +1082,85 @@ iVBORw0KGgoAAAANSUhEUgAAAC4AAAANCAYAAADWgVyvAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1o
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">WT&#95;index</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>ratio</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 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" alt="image" /></div> <style>
- .hmisctable261547 {
+ .hmisctable104152 {
  border: none;
  font-size: 80%;
  }
- .hmisctable261547 td {
+ .hmisctable104152 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable261547 th {
+ .hmisctable104152 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable261547">
+ <table class="hmisctable104152">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>22</td><td>0.996</td><td>1.078</td><td>0.735</td><td>0.450</td><td>0.450</td><td>0.610</td><td>0.750</td><td>1.175</td><td>2.090</td><td>2.680</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&#160;: 0.44 0.45 0.56 0.60 0.61 ,  <font color="MidnightBlue">highest</font>: 2.00 2.09 2.18 3.18 3.28</span> <hr class="thinhr"> <span style="font-weight:bold">HR</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>bpm</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAFgAAAANCAYAAAAt1qlwAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL+3gCAo9Q/bPrQvlQol2tQgKD60+INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p+tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M+fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H+n23BaIXzbcOnz5mfPoTvYVz7KzUl5+FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp+krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5+XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH+hRkH25+L+sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX++DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG+fAPPI6tJnNwb7ClP7IyF+D+bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv+thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf+ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r+xafL549HQ5jH+an+1y+LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC+P/Hs+y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C+DU9+z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VVBg/m8AAALVSURBVFgJ7VZNS2pRFF3azajMgkoqDaIMipAG0aiJgf+g+hU2zx+gg0aNmkQ4qJk4FhxYs2jQIBH7QCyQQCNKC9PU0tfacC/xqNALwuNx9+Dec/bH2mevczhnm3K5XBP/qTidTmxubsLv9/9Y4cHBAba2tpBIJGC323/002tQxsbG9Mb+83EmkwlWqxW/1Tg4OCh1kNzf/PQWa9YbaMS1xoBBcGs86fYyCNZNXWuBCt1eX1+Rz+cxMzPTWtQ3XpVKBXd3d5idnRVrrVbDzc0N5ubmvvFuTZVMJjE1NYXHx0f5f426vLwEcywsLOD29lYz8c4dHx/X5s1mE6lUCqOjo/JfXV3VbNlsFuVyWeb39/fo6uoSv4+PD1xdXWFkZERsDw8PKJVKGB4ehsViwdDQEDKZDN7f3+Xe7u/vx9vbGxwOh/jTxvucetP5+Xlzd3cXkUgEx8fHWvJ2B6FQCHt7ezg9PZXQcDiM7e1tnJycoKenp104pNNpbGxswOv14uLiAtFoVMMgKSsrKyB5gUAAwWAQfX19UjyL3N/fF9+lpSV4PB7E43HZCBJ9eHgIt9st9rW1NSiKguvra7hcLkxOTmJnZwexWEw6i+XlZclxdnYm/iR3YmIC09PTODo6Eh0PwPz8vBwuYlO4ievr6/D5fFAWFxdhs9lQr9fBsV7hrlarVQ2DRfEkMPnAwEDbsMSisCjifF3b09OTFE47TxlPcm9vL6cwm82ar9pFUM/NoLB1U7Gooz+FvsxF2+ehE51qk8nnh3kY093drapkzgPEeBWXXJJTzo07WKOqMwOD4M7wqqEaBGtUdGZgENwZXjVUhe0Z27RGoyGtmmZpc8A2hg8A8SgvLy/yZ/tD/HaFrRmF7Q8fORWXukKhwJ/I8/Oz5OX66ceHSPXlehhPoY3CB1K1s81iF0HhmA8rbcViUXR8rP4W4qgPMG2cMwd9VVyuRW19/wChrlIHUFgWMgAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable810303 {
+ .hmisctable627635 {
  border: none;
  font-size: 80%;
  }
- .hmisctable810303 td {
+ .hmisctable627635 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable810303 th {
+ .hmisctable627635 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable810303">
+ <table class="hmisctable627635">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>29</td><td>1</td><td>521.2</td><td>131.1</td><td>287.5</td><td>400.0</td><td>466.5</td><td>550.0</td><td>612.5</td><td>645.0</td><td>656.0</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&#160;: 170 275 300 400 410 ,  <font color="MidnightBlue">highest</font>: 640 645 650 662 685</span> <hr class="thinhr"> <span style="font-weight:bold">LV&#95;weight</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>gr</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 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" alt="image" /></div> <style>
- .hmisctable568823 {
+ .hmisctable760238 {
  border: none;
  font-size: 70%;
  }
- .hmisctable568823 td {
+ .hmisctable760238 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable568823 th {
+ .hmisctable760238 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable568823">
+ <table class="hmisctable760238">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>23</td><td>0.998</td><td>0.08135</td><td>0.01324</td><td>0.0655</td><td>0.0680</td><td>0.0730</td><td>0.0810</td><td>0.0875</td><td>0.0920</td><td>0.1045</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&#160;: 0.063 0.065 0.066 0.068 0.071 ,  <font color="MidnightBlue">highest</font>: 0.090 0.092 0.102 0.107 0.113</span> <hr class="thinhr"> <span style="font-weight:bold">Scar&#95;weight</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>gr</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAADEAAAANCAYAAAAAJIbKAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL+3gCAo9Q/bPrQvlQol2tQgKD60+INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p+tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M+fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H+n23BaIXzbcOnz5mfPoTvYVz7KzUl5+FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp+krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5+XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH+hRkH25+L+sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX++DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG+fAPPI6tJnNwb7ClP7IyF+D+bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv+thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf+ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r+xafL549HQ5jH+an+1y+LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC+P/Hs+y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C+DU9+z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VVBg/m8AAAFDSURBVEgN7VavD4JAFP5gaPJXQsYGgcywGa0mKtVmcRht/gFuTjc3GY0CZJOdf4DNwh9AQaPJ5pO7xKYmA9N529u923v3fe97d7ed4Lou+b6PPM/xrUNqtVoQBAGKonyrBohfW3ml8L+ISjNqdX/iJKTL5YL7/Y7T6VRrNz8hl/r9PkRRxGAw+ASn1r0/cZ3+Imq9QxVyqeK/dW+3G9brNebzOdrtNlarFSaTCVRVfdoThiEMw8D5fEaWZTzO3lun00GSJDxmmiYOhwNkWcZ4PEYQBDy+WCx4/vV6xW63w2w2w36/57zdbveJy/M8jEYjgP2dGo0GFUXx1o7HI5UIFEURpWnK/c1m8zJf0zRyHIcsy6Jer8dtOBySbdtUCiFd12k6nVKz2eS2XC45HsMvRXNMxsPW2+2Wz3Ecv+RiGGVj6QEuTLJMmEY0gwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable833025 {
+ .hmisctable197158 {
  border: none;
  font-size: 70%;
  }
- .hmisctable833025 td {
+ .hmisctable197158 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable833025 th {
+ .hmisctable197158 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable833025">
+ <table class="hmisctable197158">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>16</td><td>0.863</td><td>0.01277</td><td>0.01612</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0255</td><td>0.0320</td><td>0.0370</td></tr>
  </table>
@@ -983,22 +1175,22 @@ iVBORw0KGgoAAAANSUhEUgAAADEAAAANCAYAAAAAJIbKAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1o
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">Scar&#95;area</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>mm2</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAACUAAAANCAYAAAAuYadYAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL+3gCAo9Q/bPrQvlQol2tQgKD60+INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p+tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M+fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H+n23BaIXzbcOnz5mfPoTvYVz7KzUl5+FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp+krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5+XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH+hRkH25+L+sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX++DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG+fAPPI6tJnNwb7ClP7IyF+D+bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv+thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf+ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r+xafL549HQ5jH+an+1y+LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC+P/Hs+y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C+DU9+z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VVBg/m8AAAEjSURBVDgR7ZIvq4NgGMXPvShoW9QuGJf8BJaB+Cmsgn1Jk8m0YhBMsk8wFiwrE7HZBdPGwA3/BBUM9+IbxsIwDDYMe9PheeCcH+d5f0RR/BMEAZ7nYS6PomkaDMOA47i5MOF3NiQPIF+ohzIm5SyborquQ1VVSNN0kv6TS4plWSwWCyyXy0/mTmbN8nxvhbrdbmjbdrKVZ8u3Qq1WKxiGQXJ3ux3G/9s0DcIwfMZyn1F39aJIkgSu60KWZfR9D03T4Ps+oihCXdc4nU4wTROWZWG73WJsT9d1Anc8HjEMA1RVJemHwwFFUYAah6PZ5XJ5CWuz2SAIAsRxTDwURcF6vSaa53nkeY79fk+8r9cryrIk+nw+w7Zt0p4kSWTmOA6yLMM/Bd91xizDENIAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable832076 {
+ .hmisctable958447 {
  border: none;
  font-size: 80%;
  }
- .hmisctable832076 td {
+ .hmisctable958447 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable832076 th {
+ .hmisctable958447 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable832076">
+ <table class="hmisctable958447">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>12</td><td>0.862</td><td>17.26</td><td>20.43</td><td> 0</td><td> 0</td><td> 0</td><td> 0</td><td>34</td><td>42</td><td>44</td></tr>
  </table>
@@ -1009,43 +1201,43 @@ iVBORw0KGgoAAAANSUhEUgAAACUAAAANCAYAAAAuYadYAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1o
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">wet&#95;lung&#95;weight</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>gr</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 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" alt="image" /></div> <style>
- .hmisctable979899 {
+ .hmisctable409675 {
  border: none;
  font-size: 70%;
  }
- .hmisctable979899 td {
+ .hmisctable409675 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable979899 th {
+ .hmisctable409675 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable979899">
+ <table class="hmisctable409675">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>29</td><td>0.999</td><td>0.2035</td><td>0.09346</td><td>0.1100</td><td>0.1140</td><td>0.1455</td><td>0.1700</td><td>0.2655</td><td>0.3400</td><td>0.3565</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font>&#160;: 0.110 0.114 0.115 0.130 0.140 ,  <font color="MidnightBlue">highest</font>: 0.330 0.340 0.351 0.362 0.366</span> <hr class="thinhr"> <span style="font-weight:bold">RV&#95;weight</span>&#8195;<span style='font-family:Verdana;font-size:75%;'>gr</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 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" alt="image" /></div> <style>
- .hmisctable765913 {
+ .hmisctable335563 {
  border: none;
  font-size: 70%;
  }
- .hmisctable765913 td {
+ .hmisctable335563 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable765913 th {
+ .hmisctable335563 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable765913">
+ <table class="hmisctable335563">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>31</td><td>0</td><td>17</td><td>0.992</td><td>0.02866</td><td>0.01134</td><td>0.0185</td><td>0.0200</td><td>0.0215</td><td>0.0250</td><td>0.0330</td><td>0.0440</td><td>0.0445</td></tr>
  </table>
@@ -1402,8 +1594,8 @@ ggplot(lvedd_inf, aes(Scar_area, LVEDD)) +
   <nav>
   <ul class="pager">
     
-    <li class="previous"><a href="https://giacombi.github.io/post/getting-started/"><span
-      aria-hidden="true">&larr;</span> Getting started with the Academic framework for Hugo</a></li>
+    <li class="previous"><a href="/post/ami_mice/"><span
+      aria-hidden="true">&larr;</span> Acute Myocardial Infarction in a pre-clinical model: Insights from an Open Dataset</a></li>
     
 
     
