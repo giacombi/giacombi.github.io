@@ -3,6 +3,7 @@ title: 'Acute Myocardial Infarction in a pre-clinical model. Insights from an Op
   Dataset'
 author: Giacomo Bianchi
 date: '2017-08-08'
+type: "post"
 output:
     html_document:
         theme: default
