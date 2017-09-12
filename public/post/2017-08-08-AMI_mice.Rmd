@@ -4,8 +4,11 @@ title: 'Acute Myocardial Infarction in a pre-clinical model. Insights from an Op
 author: Giacomo Bianchi
 date: '2017-08-08'
 output:
-    blogdown::html_page:
+    html_document:
+        theme: default
+        highlight: default
         toc: true
+        toc_float: true
 slug: AMI_mice
 categories:
   - R
