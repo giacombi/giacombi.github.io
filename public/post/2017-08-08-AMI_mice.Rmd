@@ -1,0 +1,384 @@
+---
+title: 'Acute Myocardial Infarction in a pre-clinical model: Insights from an Open
+  Dataset'
+author: Giacomo Bianchi
+date: '2017-08-08'
+output:
+    html_document:
+        theme: flatly
+        highlight: default
+        toc: true
+        toc_float: true
+slug: AMI_mice
+categories:
+  - R
+  - Data Analysis
+  - Cardiology
+tags:
+  - Data Analysis
+  - Tidy Data
+  - Data Munging
+  - R Notebook
+---
+
+#Introduction
+Yesterday I came into the peculiar [Biomedical Data Journal](http://biomed-data.eu) that dedicated its last issue to Heart Failure and Stress response. The structure of the journal consists in an editorial and some data papers. Those relevant to my attention were two echocardiographic datasets, assessing the cardiac function pre- and post-myocardial infarction in mice (the first) and rats (the second).
+I'll go through the first dataset and apply the principles of Reproducibility and Data Analysis Workflow to download, explore, munge, rearrange and analize the data within; possibly also draw some meaningful conclusions from it. 
+
+#Data Analysis tools
+Many approaches are possible, using basic R or more advanced, efficient and structured tools such as libraries in the [Tidyverse](https://cran.r-project.org/web/packages/tidyverse/index.html) library developed by [Hadley Wickham](https://en.wikipedia.org/wiki/Hadley_Wickham), well presented and documented in its dedicated [site](http://www.tidyverse.org). Also, another famous and handy package for computation comes from the mind of the statistician [Frank Harrel](http://biostat.mc.vanderbilt.edu/wiki/Main/FrankHarrell), chair of Biostatistics at Vanderbilt University (Nashville, Tennessee USA); it is named after him in some way, being [Hmisc](http://biostat.mc.vanderbilt.edu/wiki/Main/Hmisc) acronym of "Harrell's miscellanea".
+
+#Load Libraries
+First steps are load the libraries that will be used at the beginning of the script, in this case of the notebook. I'll load the useful bunch of packages contained in the Tidyverse along with Hmisc.
+
+```{r Load libraries, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(Hmisc)
+library(ggthemes)
+library(hrbrthemes)
+```
+
+#Locate, store and read the files
+The first dataset is located at this [page](http://biomed-data.eu/article/dataset-echocardiographic-assessment-cardiac-function-mice-after-myocardial-infarction). To automatically store the data it's necessary the following script:
+
+```{bash Create directory for data}
+mkdir data
+pwd
+```
+In this Bash script a directory is created with `mkdir` and then the path is shown with `pwd`, that stands for 'print working directory'.
+Now let's download the actual file into the created directory:
+
+```{r}
+if(!file.exists("01301_Mice_Myocardial_Infarction.xlsx")){
+    url <- "http://biomed-data.eu/system/files/01301_Mice_Myocardial_Infarction_0.xlsx?download=1"
+    download.file(url, destfile = "/Users/gbianchi/giacombi.github.io/content/post/data/01301_Mice_Myocardial_Infarction.xlsx")
+}
+```
+This little chunck contains commands that first check for file existence using an `if()` statement; inside it first the non-existence of the destination file is assessed using `!file.exists()` and if the condition is evaluated internally as `TRUE`, it proceedes using the provided `url` to `download.file()` that contains the destination and name of the file.
+
+Now that we have the file, it is time to read it into a data structure that is useful for our purpose of analysis. Again verify our working directory, go to /data folder and list the files within.
+
+```{bash Confirm the download, echo=TRUE}
+pwd
+cd data
+pwd
+ls 
+```
+Our file has the extension `.xlsx` which denotes a Microsoft Excel file. We need a library to deal with it. I'll go for `XLConnect` that has many interesting features.
+
+```{r Read Excel file, echo=TRUE, message=FALSE}
+library(XLConnect)
+wb = loadWorkbook("data/01301_Mice_Myocardial_Infarction.xlsx")
+```
+After established a connection with the workbook, it's time to explore the sheets and get the one of our interest.
+```{r Explore the workbook}
+wb_sheets <- XLConnect::getSheets(wb)
+wb_sheets
+```
+Then, we can read the second one into a dataframe as follows:
+```{r Read worksheet into a Data.Frame}
+df <- readWorksheet(wb, sheet = wb_sheets[2], header = TRUE)
+```
+
+The `dplyr` package provides an useful tool to look at the structure of the dataframe: `glimpse()`. The output is similar to `str()`, but more 'structured' and 'informative.
+
+```{r}
+glimpse(df)
+```
+
+#Data Manipulation
+
+The dataset contains 31 observations and 20 variables; looking at the names of the variables, they doesn't fit the general style rules. For more details about it, I suggest to look at the [style guide](http://adv-r.had.co.nz/Style.html) in Advanced R by Hadley Wickham.
+
+For our purpose, let's change the names with more tidy and immediate names. I'll use the `dplyr` command `rename()` for it.
+Here we can use different approaches:
+
+1. completely rename, manually, all the variables into new ones, defined by the user (easy)
+2. use regular expression and string manipulation to obtain meaningful names (way more complex)
+
+Let's start with the first way:
+
+##Manual renaming
+
+```{r Rename variables manually}
+mice_MI <- df %>% rename(ID = Subject..ID., 
+				Duration = Duration.of.Intervention..weeks.,
+				BodyWeight_start = Body.weight..gr..at.the.time.of.surgery,
+				BodyWeight_end = Body.weight.at.sacrifice..gr.,
+				LVEDD = LV.end.diastolic.diameter..cm.,
+				LVESD = LV.end.systolic.diameter..cm.,
+				LVPWT = LV.posterior.wall.Thickness..cm.,
+				LV_long_axis = long.axis.diameter.of.LV..cm.,
+				LVEF = LV.Ejection.Fraction..,
+				Sys_Vel = Systolic.velocity..cm.s.,
+				LVEDV = LV.End.Diastolic.Volume..ml.,
+				LVESV = LV.End.Systolic.Volume..ml.,
+				WT_index = Wall.Tension.Index..ratio.,
+				HR = Heart.rate..beats.per.min.,
+				LV_weight = Left.ventricular.weight..gr.,
+				Scar_weight = Scar.weight..gr.,
+				Scar_area = Scar.area..mm2.,
+				wet_lung_weight = Wet.lung.weight...gr.,
+				RV_weight = Right.ventricular.weight..gr.)
+
+```
+
+Now look at the new dataset:
+```{r}
+glimpse(mice_MI)
+```
+
+##Retrieving units from the names 
+
+
+```{r}
+df_names <- names(df)
+df_names2 <- df_names %>%
+                 stringr::str_to_lower()
+df_names3 <- gsub(df_names2, pattern = "cm\\.s", replacement = "cm*s^-1")
+df_names4 <- gsub(df_names3, pattern = "\\.\\.", replacement = "\\.")
+
+df_names_list <- strsplit(df_names4, "\\.")
+units_list <- lapply(df_names_list, tail, n = 1L)
+units_df <- unlist(units_list)
+units_df[c(2,4)] <- c("", "gr")
+units_df
+```
+
+Now we can pass the `units` vector to the `upData()` function of Hmisc in order to have the variables with units.
+
+```{r upData units imputing}
+mice_harrel <- upData(mice_MI,
+                      labels = c(ID = 'Identification Number',
+                                 Intervention = 'Sham or Surgery'),
+                      levels = list(Intervention=list(Sham="Sham-operation", AMI = "CAL")),
+                      units = c(ID = units_df[1],
+                                Intervention = units_df[2],
+                                Duration = units_df[3],
+                                BodyWeight_start = units_df[4],
+                                BodyWeight_end = units_df[5],
+                                LVEDD = units_df[6],
+                                LVESD = units_df[7],
+                                LVPWT = units_df[8],
+                                LV_long_axis = units_df[9],
+                                LVEF = '%',
+                                Sys_Vel = units_df[11],
+                                LVEDV = units_df[12],
+                                LVESV = units_df[13],
+                                WT_index = units_df[14],
+                                HR = 'bpm',
+                                LV_weight = units_df[16],
+                                Scar_weight = units_df[17],
+                                Scar_area = units_df[18],
+                                wet_lung_weight = units_df[19],
+                                RV_weight = units_df[20]))
+html(contents(mice_harrel), maxlevels=20, levelType='table')
+```
+
+#Exploratory Data Analysis
+##Descriptive Statistics without Data Stratification
+At this moment it is possible to use some features of Hmisc package, as `describe()` and the nice `html()` rendering.
+```{r Descriptive statistics no stratification}
+html(describe(mice_harrel), size = 80, scroll = F)
+```
+
+There is also the possibility to visualize it using Hmisc function `prList`:
+```{r}
+prList(plot(describe(mice_harrel)), lcap=c('', 'These are spike histograms'), htmlfig=2)
+```
+
+Again it is a visual recap of how the variables are distributed. 
+
+##Descriptive Statistics with Data Stratification
+```{r Data stratification}
+mice_strata <- summaryM(BodyWeight_end+
+                        LVEDD + LVESD + 
+                        LV_long_axis + LVEF +
+                        LVEDV + LVESV +
+                        WT_index + HR +
+                        LV_weight + 
+                        Scar_weight + Scar_area +
+                        wet_lung_weight +
+                        RV_weight ~ Intervention, data = mice_harrel, overall = FALSE, test = TRUE)
+```
+
+```{r}
+html(mice_strata, exclude1=FALSE, npct='both', digits=3,
+     prmsd=TRUE, brmsd=TRUE)
+```
+
+##Data Visualization
+The graphics tool `ggplot2` provides a meaningful and consistent syntax for efficient plotting. In order to feed gglplot with understandable data, sometimes they need to be rearranged in a "tidy" format.
+
+###Body weight after three weeks from Sham Operation or Myocardial Infarction
+Let's consider at first the *body weight* variables. We want to see if surgery and infarction has an influence on it. We need to compare the first group "Sham operation" at baseline and after 3 weeks and the second group "AMI" also. To do so we must consider at first the variables `ID`, `Intervention`,  `BodyWeight_start`, `BodyWeight_end`. A subsetted dataframe of this kind with 4 variables is not "tidy": the last two variables must be rearranged in order to generate a "Timing" i.e. "start" and "end" and the actual "value". The `dplyr` package provides functions for it.
+
+```{r Subset and make tity - Body weight}
+body_weight <- mice_harrel %>% select(ID, Intervention, BodyWeight_start, BodyWeight_end) %>% #subset the original dataset
+                    gather(key, value, c(BodyWeight_start, BodyWeight_end)) %>% #gather the label body weight separating from values
+                    separate(key,into = c("label", "Time"), sep = "_") %>% #separate the label from the actual timing
+                    select(-label) %>% #drop the label column
+                    rename(Weight = value) #rename the value column into "Weight"
+
+head(body_weight)
+tail(body_weight)
+```
+
+Now it let's use ggplot to produce a good visualization on how the body weight changes over time and depending on the occurrence of acute myocardial infarction (AMI).
+
+```{r }
+ggplot(body_weight, aes(x = factor(Time, levels = c("start", "end")), y = Weight, fill = factor(Time), group = factor(ID))) +
+    geom_point(shape = 21, alpha = 0.6, size = 3) +
+    geom_line(alpha = 0.1, linetype = 2) +
+    scale_x_discrete(name = "Time", 
+                     labels = c("start" = "Start", "end" = "End")) +
+    scale_y_continuous(name = "Mice Weight", 
+                       limits = c(min(body_weight$Weight)-2, max(body_weight$Weight)+2)) +
+    scale_fill_discrete(name = "Time", 
+                        breaks = c("start", "end"), 
+                        labels = c("start" = "Start", "end" = "End")) +
+    ggtitle("Body Weight during the Study") +
+    facet_grid(.~Intervention) 
+    
+```
+
+###Ventricular Remodeling - End Diastolic Diameter
+It is well know that myocardial in results in loss of myocytes and myocardial remodeling, i.e. a dilatation of the left ventricle; this dilatation can be measured using end-diastolic and end-systolic diameter and volume. 
+We can explore and visualise what happens in the two conditions.
+First let's consider the variable of interest `ID`, `Intervention`, `LVEDD`, `LVESD`, `LVEDV` and `LVESV`. In this case there is no pre and post measure and we must consider only the difference between those undergoing "Sham" operation and "AMI" operation.
+Then we must rearrange the dataframe in a tidy format namely `ID`, `Intervention`, `Phase`, `Measurement` and `Value`. Of note, we must be very careful since in the same column `Value` there will be a mix of cm and ml; so I'll create the `Phase` variable consisting in two levels, diastole and systole, and `Measurement` that also has two levels: volume, diameter. It will result in a quite complex, but visually informative graph that will explain the evolution of cardiac remodelling.
+
+```{r Cardiac Remodeling - Diameter and Volume}
+remod_diam <- mice_harrel %>% select(ID, Intervention, LVEDD, LVESD) %>%
+                                rename(Diastolic_Diameter = LVEDD, Systolic_Diameter = LVESD) %>%
+                                gather(key, value, c(Diastolic_Diameter, Systolic_Diameter)) %>%
+                                separate(key, c("Phase", "Measure"), sep = "_")
+
+remod_vol <- mice_harrel %>% select(ID, Intervention, LVEDV, LVESV) %>%
+                                rename(Diastolic_Volume = LVEDV, Systolic_Volume = LVESV) %>%
+                                gather(key, value, c(Diastolic_Volume, Systolic_Volume)) %>%
+                                separate(key, c("Phase", "Measure"), sep = "_")
+
+
+head(remod_diam)
+head(remod_vol)
+
+heart_remodeling <- remod_diam %>% full_join(remod_vol, by = c("ID", "Intervention", "Measure", "Phase", "value"))
+
+head(heart_remodeling)
+tail(heart_remodeling)
+```
+
+Once we have created this long format dataset, we can unleash the ggplot power to visualize the cardiac remodeling in terms of diameter and volume.
+
+```{r Visualization of Heart Remodeling}
+ggplot(heart_remodeling, aes(x = factor(Intervention), y = value, fill = factor(Intervention))) +
+    geom_point(shape = 21, position = position_jitterdodge()) +
+    stat_summary(fun.y = "median", fun.ymin = "median", fun.ymax= "median", 
+                 geom = "crossbar", size= 0.15, width = 0.4, col = "black") +
+    scale_y_log10("Value") +
+    scale_x_discrete("Intervention") +
+    scale_fill_discrete("Intervention") + 
+    ggtitle("Cardiac Remodeling") +
+    facet_grid(Measure~Phase, switch = "y")
+```
+
+In this case, due to the spread of Volumes after AMI, I decided to convert the y-axis into a log10 form. In this way is pretty clear that median values are higher after myocardial infarction, no matter which paramenter is considered.
+
+###Ejection fraction after Myocardial Infarction
+Loss of contractile units after myocardial infarction results in a decrease of overall cardiac function that can be assessed with echocardiography and parametrized using the "Ejection Fraction".
+With `ggplot` now we can visualize the differences; we'll select `ID`, `Intervention` and `LVEF` for a pretty quick and easy graph. In this case the selected columns are already in a tidy format and no further manipulation is required.
+
+```{r Ejection Fraction after AMI}
+ggplot(mice_harrel, aes(x= factor(Intervention, levels = c("Sham", "AMI")), y = LVEF)) +
+    geom_boxplot(width = 0.4) +
+    geom_point(aes(fill = Intervention), position = position_jitterdodge(), shape = 21) +
+    scale_x_discrete("Intervention") +
+    scale_y_continuous("Ejection Fraction %") +
+    ggtitle("Ejection Fraction - Effect of AMI")
+```
+
+###Infarct size and correlation with ejection fraction
+Intuitively a loss of contractile units in myocardial infarction results in a decreased ejection fraction, but of which extent? This question can be addressed exploring the correlation between the infarct size, in our case the scar area, and the ejection fraction. To do so, we must select only those animals that underwent myocardial infarction and the variables `ID`, `Intervention`, `LVEF` and `Scar_area`.
+
+```{r Correlation between scar area and ejection fraction}
+ef_scar <- mice_harrel %>% select(ID, Intervention, LVEF, Scar_area) %>%
+                filter(Intervention == "AMI")
+```
+
+and now we plot their relationship, but first let's calculate its fit using regression
+
+```{r scar and ef linear regression}
+ef_scar_fit <- lm(ef_scar$LVEF~ef_scar$Scar_area)
+summary(ef_scar_fit)
+```
+
+
+```{r Plot ejection fraction explained by scar area}
+ggplot(ef_scar, aes(x = Scar_area, y = LVEF)) +
+    geom_point(alpha = 0.6) +
+    stat_smooth(geom = "smooth", se = T, show.legend = T, method = "lm") +
+    annotate("text", x = 45, y = 42, label = paste("Adj R^2", "=", signif(summary(ef_scar_fit)$adj.r.squared, 2))) +
+    annotate("text", x = 45, y = 40, label = paste("p-value", "=", signif(summary(ef_scar_fit)$coef[2,4], 2))) +
+    #annotate("text", x = 45, y = 42, label = "paste(italic(R) ^ 2, \" = .75\")", parse = TRUE) +
+    scale_x_continuous("Scar Area (%)") +
+    scale_y_continuous("LV ejection fraction (%)") +
+    ggtitle("Correlation Infarct Size and Ejection Fraction")
+```
+
+###Ratio of LV weight to body weight
+Another parameter of remodeling is the ratio of LV weight to body weight. First select the variables `ID`, `BodyWeight_end` and `Scar_weight`. 
+
+```{r LV to Body weight ratio}
+ratio_lv_body <- mice_harrel %>% select(ID, Intervention, BodyWeight_end, LV_weight) %>%
+                                    mutate(ratio = LV_weight/BodyWeight_end*1000) 
+``` 
+
+```{r Comparison between LV and body weight ratio}
+summaryM(ratio ~ Intervention, data = ratio_lv_body, test = T)
+```
+
+```{r Graph Ratio LV body weight}
+ggplot(ratio_lv_body, aes(x = Intervention, ratio)) +
+    geom_boxplot(width = 0.4) +
+    geom_point(aes(fill = Intervention), position = position_jitterdodge(), shape = 21) +
+    scale_x_discrete("Intervention") +
+    scale_y_continuous("Ratio (g/kg)") +
+    ggtitle("LV weight to Body weight ratio") +
+    annotate(geom = "text", x = 1.5, y = 4.35, label = "p = 0.12") +
+    annotate("segment", x = 1, xend = 2, y = 4.25, yend = 4.25, colour = "black") +
+    annotate("segment", x = 1, xend = 1, y = 4.25, yend = 4.20, colour = "black") +
+    annotate("segment", x = 2, xend = 2, y = 4.25, yend = 4.20, colour = "black")
+```
+
+###Relationship of LV End-Diastolic-Diameter with LVEDV and Infarct size
+Now we can explore the relationship between LVEDD explained by LVEDV and Infarct size.
+
+```{r subset for LVEDD and LVEDV plus infarct size}
+lvedd_rel <- mice_harrel %>% 
+                mutate(Inf_size = ifelse(Scar_area == 0, "Sham", 
+                                         ifelse(Scar_area >= 40, "Large", "Moderate"))) %>%
+                select(ID, Intervention, LVEDD, LVEDV, Inf_size, Scar_area)
+                
+```
+
+Now we can construct the regression plots
+
+```{r Regression plot LVEDD LVEDV}
+ggplot(lvedd_rel, aes(LVEDV, LVEDD, col = Intervention)) +
+    geom_point(aes(shape = Inf_size)) +
+    geom_smooth(method = "lm", se = F)
+```
+
+```{r Regression LVEDD and Infarct size}
+lvedd_inf <- lvedd_rel %>% filter(Intervention == "AMI")
+
+ggplot(lvedd_inf, aes(Scar_area, LVEDD)) + 
+    geom_point(pch = 21) +
+    geom_smooth(method = "lm", se = F) + 
+    scale_x_continuous(name = "Scar Area") +
+    scale_y_continuous(name = "LVEDD") +
+    ggtitle("LVEDD and Infarct Size")
+        
+```
+

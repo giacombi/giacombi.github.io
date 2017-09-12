@@ -30,6 +30,24 @@
     </item>
     
     <item>
+      <title>Data Analysis</title>
+      <link>https://giacombi.github.io/tags/data-analysis/</link>
+      <pubDate>Tue, 08 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://giacombi.github.io/tags/data-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Munging</title>
+      <link>https://giacombi.github.io/tags/data-munging/</link>
+      <pubDate>Tue, 08 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://giacombi.github.io/tags/data-munging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Deep Learning</title>
       <link>https://giacombi.github.io/tags/deep-learning/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
@@ -89,6 +107,15 @@
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
       <guid>https://giacombi.github.io/tags/r-markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R Notebook</title>
+      <link>https://giacombi.github.io/tags/r-notebook/</link>
+      <pubDate>Tue, 08 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://giacombi.github.io/tags/r-notebook/</guid>
       <description></description>
     </item>
     
