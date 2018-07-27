@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recent &amp; Upcoming Talks on Data Doctor Blog</title>
+    <link>https://giacombi.github.io/talk/</link>
+    <description>Recent content in Recent &amp; Upcoming Talks on Data Doctor Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Giacomo Bianchi</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/talk/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>I Nuovi VAD</title>
+      <link>https://giacombi.github.io/talk/example-talk/</link>
+      <pubDate>Sat, 03 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://giacombi.github.io/talk/example-talk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Surgery for Diastolic Disease: Mithology</title>
+      <link>https://giacombi.github.io/talk/dd_mithology/</link>
+      <pubDate>Sat, 05 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://giacombi.github.io/talk/dd_mithology/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
